@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>四川省健康优生服务系统</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="../javascript/jPaginate/css/style.css" media="screen"/>
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/lookUserList.js"></script>
+<script type="text/javascript" src="../javascript/jPaginate/jquery.paginate.js" ></script>
+
+
+<style type="text/css">
+label {
+	font-size: 5%;
+}
+ .demo{
+                width:580px;
+                padding:10px;
+                margin:10px auto;
+                border: 1px solid #fff;
+                background-color:#f7f7f7;
+            }
+</style>
+</head>
+<body style="background-color: #F2F2F2">
+	<div class="container">
+		<img src="../images/titleJPG2.jpg" border="2" vspace="4" width="100%"
+			height="100%" align="bottom" />
+
+		<div class="row">
+			<div class="col-xs-3 ">
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; width: 100%; text-align: center">
+					<font size=3><b>登录信息</b></font>
+				</div>
+				<table class="table">
+					<tr>
+						<td style="width:58px;">单位：</td>
+						<td id="unit" colspan="2"></td>
+					</tr>
+					<tr>
+						<td>用户：</td>
+						<td id="username"></td>
+						<td align="right">
+						<div style="position: relative; right: -7px;">
+						
+						<button id="logout" type="button" class="btn btn-primary" style="height:26px;width:38px;">
+								<div style="position: relative; bottom: 4px;right:8px;" align="center">
+									<b>注销</b>
+								</div>
+						</button>
+						</div>
+							</td>
+					</tr>
+				</table>
+				<div style="position: relative; bottom: 20px;">
+					<div class="form-control"
+						style="background-color: #3162BB; color: #FFFFFF; text-align: center">
+						<font size=3><b>用户管理</b></font>
+					</div>
+					<b><ul id="authList" class="nav nav-pills nav-stacked" style="text-align: center">
+						
+					</ul></b>
+				</div>
+			</div>
+			<div class="col-xs-9">
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; text-align: left">
+					<font size=3><b>查看用户列表</b></font>
+				</div>
+				<br />
+				<div style="position: relative; bottom: 4px;right:14px;">
+				<form class="form-inline">
+				<div class="col-xs-4">
+						<div class="form-group">
+							级&nbsp;&nbsp;&nbsp;别：
+						</div>
+						<div class="form-group">
+							
+							<select id="level" disabled="" class="form-control" style="width:190px;" onchange="levelChange()">
+								<option>全部</option>
+								<option>省级</option>
+								<option>市级</option>
+								<option>县/区级</option>
+								<option>乡/镇级</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-4" style="position: relative; right: -15px;">
+						<div class="form-group">
+							选择省：
+						</div>
+						<div class="form-group">
+							
+							<select id="province" disabled="" class="form-control" style="width:190px;" onchange="provinceChange()">
+									
+							</select>
+						</div>
+					</div>
+					<!-- <div style="position: relative; right: -14px;"> -->
+					<div class="col-xs-4" style="position: relative; right: -30px;">
+						<div class="form-group">
+							选择市：
+						</div>
+						<div class="form-group">
+							
+							<select id="city" disabled="" class="form-control" style="width:190px;" onchange="cityChange()">
+									
+							</select>
+						</div>
+					</div>
+					</form>
+					</div>
+					<div style="position: relative;bottom:-10px;right:14px;">
+					<form class="form-inline">
+					
+					<div class="col-xs-4">
+						<div class="form-group">
+							选择县：
+						</div>
+						<div class="form-group">
+							
+							<select id="county" disabled="" class="form-control" style="width:190px;" onchange="countyChange()">
+									
+							</select>
+						</div>
+					</div>
+					
+				    <div class="col-xs-4" style="position: relative; right: -15px;">
+						<div class="form-group">
+							选择镇：
+						</div>
+						<div class="form-group">
+							
+							<select id="town" disabled="" class="form-control" style="width:190px;">
+									
+							</select>
+						</div>
+					</div>
+
+					<div style="position: relative; right: -30px;">
+					<div class="col-xs-3">
+					
+						<div class="form-group">
+							关键字：
+						</div>
+						<div class="form-group">
+							 <input id="primarykey" type="text" class="form-control" style="width:120px;"/>
+						</div>
+						</div>
+				
+					<div class="col-xs-1" style="position: relative; right: 23px;">
+						<div class="form-group">
+							<button id="select" type="button" class="btn btn-primary">
+							<div style="position: relative; bottom: 2px;">
+							<b>查询</b>
+							</div>
+							</button>
+						</div>
+					</div>
+					</div>
+					
+				</form>
+				</div>
+				<br/><br/>
+				<div style="position: relative; bottom: -29px;">
+				<hr/>
+				</div>
+				
+				<div style="position: relative; bottom: -22px;">
+				<div class="row">
+					<div class="col-xs-12">
+						<table id="userList" class="table table-condensed table-hover">
+							
+						</table>
+					</div>
+					</div>
+				</div>
+				<div style="position: relative; bottom: 10px;right:20px;">
+					
+					<br/><br/>
+					<div style="position: relative;right:-10px;">
+					 <div class="col-xs-12" align="left" id = "demo5">
+					
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="addUserModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="myModalLabel" style="font-weight:900;">添加用户</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-7">
+						
+							<table class="table">
+								<tr>
+									<th colspan="2" class="success" style="text-align:left">用户信息:</th>
+								</tr>
+								<tr>
+									<td><span>用户账号</span></td>
+									<td><div><input type="text" class="form-control" id="userlogName"placeholder="用户账号"></div></td>
+								</tr>
+								<tr>
+									<td><span>用户密码</span></td>
+									<td><input type="text" class="form-control" id="userPassword" placeholder="用户密码"></td>
+								</tr>
+								<tr>
+									<td><span>确认密码</span></td>
+									<td><input type="text" class="form-control" id="reUserPassword" placeholder="确认密码"></td>
+								</tr>
+								
+								<tr>
+									<td><span>用户姓名</span></td>
+									<td><input type="text" class="form-control" id="userRealName" placeholder="姓名"></td>
+								</tr>
+								<tr>
+									<td><span>用户电话</span></td>
+									<td><input type="text" class="form-control" id="userPhoneNum" placeholder="电话号码"></td>
+								</tr>
+								<tr>
+									<td><span>用户邮箱</span></td>
+									<td><input type="text" class="form-control" id="userEmail" placeholder="邮箱地址"></td>
+								</tr>
+							</table>
+								
+							<table class="table">
+								<tr class="success">
+									<th colspan="2" class="success" style="text-align:left">地域信息:</th>
+								</tr>
+								<tr>
+									<td><span>省</span></td>
+									<td>
+										<select class="form-control" id=userProvience  onchange="provinceChange()">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span>市</span></td>
+									<td>
+										<select class="form-control" id="userCity" onchange="cityChange()">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span>区/县</span></td>
+									<td>
+										<select class="form-control" id="userQu" onchange="countyChange()">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span>镇/街道办</span></td>
+									<td>
+										<select class="form-control"id="userZhen">
+										</select>
+									</td>
+								</tr>
+							</table>
+						
+						</div>
+						<div class="col-xs-5">
+							<div>
+								<table class="table">
+									<tr class="success">
+										<th colspan="2" class="success" style="text-align:left">用户权限</th>
+									</tr>
+								</table>					
+								<div style="position: relative; left: 10px;" id="authority">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="canceladd" type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+					<button id="adduser" type="button" class="btn btn-info" data-dismiss="modal">添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<div class="modal fade" id="modifyUserModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="myModalLabel" style="font-weight:900;">修改用户信息</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-7">
+							<table class="table">
+								<tr>
+									<th id="modifyUserId" colspan="2" class="success" style="text-align:left">用户信息:</th>
+								</tr>
+								<tr>
+									<td><span>用户账号</span></td>
+									<td><div><input type="text" class="form-control" id="userlogNameModify"placeholder="用户账号"></div></td>
+								</tr>
+								<tr>
+									<td><span>用户密码</span></td>
+									<td><input type="text" class="form-control" id="userPasswordModify" placeholder="用户密码"></td>
+								</tr>
+								<tr>
+									<td><span>确认密码</span></td>
+									<td><input type="text" class="form-control" id="reUserPasswordModify" placeholder="确认密码"></td>
+								</tr>
+								<tr>
+									<td><span>账户等级</span></td>
+									<td>
+										<select id="authorityTypeModify" class="form-control">
+										  <option value="1">省级</option>
+										  <option value="2">市级</option>
+										  <option value="3">区县级</option>
+										  <option value="4">乡镇级</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span>用户姓名</span></td>
+									<td><input type="text" class="form-control" id="userRealNameModify" placeholder="姓名"></td>
+								</tr>
+								<tr>
+									<td><span>用户电话</span></td>
+									<td><input type="text" class="form-control" id="userPhoneNumModify" placeholder="电话号码"></td>
+								</tr>
+								<tr>
+									<td><span>用户邮箱</span></td>
+									<td><input type="text" class="form-control" id="userEmailModify" placeholder="邮箱地址"></td>
+								</tr>
+							</table>
+								
+							<table class="table">
+								<tr class="success">
+									<th colspan="2" class="success" style="text-align:left">地域信息:</th>
+								</tr>
+								<tr>
+									<td><span>省</span></td>
+									<td>
+										<select class="form-control" id="userProvienceModify"  onchange="userProvienceChangeModify()">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span>市</span></td>
+									<td>
+										<select class="form-control" id="userCityModify" onchange="userCityChangeModify()">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span>区/县</span></td>
+									<td>
+										<select class="form-control" id="userQuModify" onchange="userQuChangeModify()">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span>镇/街道办</span></td>
+									<td>
+										<select class="form-control" id="userZhenModify">
+										</select>
+									</td>
+								</tr>
+							</table>
+							
+						</div>
+						<div class="col-xs-5">
+							<div>
+								<table class="table">
+									<tr class="success">
+										<th colspan="2" class="success" style="text-align:left">用户权限</th>
+									</tr>
+								</table>						
+								<div style="position: relative; left: 10px;" id="authorityModify">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="cancelmodify" type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+					<button id="saveusermodify" type="button" class="btn btn-info" data-dismiss="modal">保存</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	</div>
+	
+	<button type="button" class="btn btn-info" data-toggle="modal"
+			data-target="#myDeleteModal" style="display: none"
+			id="isDelete"></button>
+	<div class="modal fade" id="myDeleteModal" tabindex="-1">
+	<div style="position: relative; top: 200px;">
+		<div class="modal-dialog" >
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="myDeleteModalLabel">确定删除？</h4>
+				</div>
+				<div class="modal-body">
+					<div>
+						<span>确定删除所选用户，请点击"确定"</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						id="sureDelete">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myWarnModal" tabindex="-1">
+		<div style="position: relative; top: 200px;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h5 class="modal-title" id="myModalLabel"><font size=3><b>提示</b></font></h5>
+					</div>
+					<div class="modal-body">
+						<span id="warn" >
+						
+						</span>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						id="sure">确定</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

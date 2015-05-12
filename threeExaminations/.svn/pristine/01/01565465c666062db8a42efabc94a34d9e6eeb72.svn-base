@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划生育健康优生信息管理系统</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/setmaxuser.js"></script>
+
+<style type="text/css">
+label {
+	font-size: 5%;
+}
+</style>
+</head>
+<body style="background-color: #F2F2F2">
+	<div class="container">
+		<img src="../images/titleJPG2.jpg" border="2" vspace="4" width="100%"
+			height="100%" align="bottom" />
+
+		<div class="row">
+			<div class="col-xs-3 ">
+				<!-- 左侧导航 -->
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; width: 100%; text-align: center">
+					<font size=3><b>登录信息</b></font>
+				</div>
+				<table class="table">
+					<tr>
+						<td style="width:58px;">单位：</td>
+						<td id="unit" colspan="2"></td>
+					</tr>
+					<tr>
+						<td>用户：</td>
+						<td id="username"></td>
+						<td align="right">
+						<div style="position: relative; right: -7px;">
+						
+						<button id="logout" type="button" class="btn btn-primary" style="height:26px;width:38px;">
+								<div style="position: relative; bottom: 4px;right:8px;" align="center">
+									<b>注销</b>
+								</div>
+						</button>
+						</div>
+							</td>
+					</tr>
+				</table>
+				<div style="position: relative; bottom: 20px;">
+					<div class="form-control"
+						style="background-color: #3162BB; color: #FFFFFF; text-align: center">
+						<font size=3><b>用户管理</b></font>
+					</div>
+					<b><ul id="authList" class="nav nav-pills nav-stacked" style="text-align: center">
+						<!-- <li><a href="../html/setmaxuser.html"><font
+								face="微软雅黑" size=3>设置最大用户数</font></a></li>
+						<li><a href="../html/lookuserlist.html"><font
+								face="微软雅黑" size=3>查看及修改用户信息</font></a></li>
+						<li><a href="../html/adduser.html"><font
+								face="微软雅黑" size=3>添加用户</font></a></li> -->
+					</ul></b>
+				</div>
+			</div>
+			<div class="col-xs-9">
+				<!-- 主要页面 -->
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; text-align: left">
+					<font size=3><b>设置最大用户数</b></font>
+				</div>
+				<br/>
+
+				<div style="position: relative; bottom: 4px;right:14px;">
+				<form class="form-inline">
+				    <div class="col-xs-4">
+						<div class="form-group">
+							级&nbsp;&nbsp;&nbsp;别：
+						</div>
+						<div class="form-group">
+							
+							<select id="level" class="form-control" style="width:190px;" onchange="levelChange()">
+								<option>省级</option>
+								<option>市级</option>
+								<option>县/区级</option>
+								<option>乡/镇级</option>
+							</select>
+						</div>
+					</div>
+				    <div class="col-xs-4">
+						<div class="form-group">
+							选择省：
+						</div>
+						<div class="form-group">
+							
+							<select id="province" class="form-control" style="width:190px;" onchange="provinceChange()">
+									
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-4" style="position: relative; right: -15px;">
+						<div class="form-group">
+							选择市：
+						</div>
+						<div class="form-group">
+							
+							<select id="city" class="form-control" style="width:190px;" onchange="cityChange()">
+									
+							</select>
+						</div>
+					</div>
+					
+					</form>
+					</div>
+					<div style="position: relative;bottom:-10px;right:14px;">
+					<form class="form-inline">
+					  <div class="col-xs-4" style="position: relative; right: 0px;">
+						<div class="form-group">
+							县&nbsp;/&nbsp;区：
+						</div>
+						<div class="form-group">
+							
+							<select id="county" class="form-control" style="width:190px;" onchange="countyChange()">
+									
+							</select>
+						</div>
+					 </div>
+					 <div class="col-xs-8">
+						<div class="form-group">
+							乡&nbsp;/&nbsp;镇：
+						</div>
+						<div class="form-group">
+							
+							<select id="town" class="form-control" style="width:190px;" onchange="townChange()">
+									
+							</select>
+						</div>
+					 </div>
+				</form>
+				</div>
+				<br/><br/><br/><br/>
+				<div class="row">
+				<div class="col-xs-4">
+				<form class="form-horizontal">
+				     <div style="position: relative;bottom:10px;right:20px;">
+				     <div class="form-group">
+							<div class="col-xs-5 control-label">
+								<font face="微软雅黑">最大用户数</font>
+							</div>
+							<hr/>
+					 </div>
+					 </div>
+					 <div style="position: relative;bottom:20px;right:0px;">
+				     <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">省级用户&nbsp;：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="provincemax" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">市级用户&nbsp;：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="citymax" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">县/区用户：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="countymax" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">乡/镇用户：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="townmax" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    </div>
+				</form>
+				</div>
+				
+				<div class="col-xs-4">
+				<form class="form-horizontal">
+				        <div style="position: relative;bottom:10px; right:20px;">
+				        <div class="form-group">
+							<div class="col-xs-5 control-label">
+								<font face="微软雅黑">已有用户数</font>
+							</div>
+							<hr/>
+					    </div>
+					    </div>
+					<div style="position: relative;bottom:20px;right:0px;">
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            省级用户&nbsp;：
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="provinceexist" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            个
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            市级用户&nbsp;：
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="cityexist" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				           个
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            县/区用户：
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="countyexist" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            个
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            乡/镇用户：
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="townexist" class="form-control"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            个
+				        </div>
+				    </div>
+				    </div>
+				</form>
+				</div>
+			    
+				<div class="col-xs-4">
+				<form class="form-horizontal">
+				    <div style="position: relative;bottom:10px; right:15px;"> 
+				        <div class="form-group">
+							<div class="col-xs-6 control-label">
+								<font face="微软雅黑">设置最大用户数</font>
+							</div>
+							<hr/>
+					    </div>
+					 </div>
+					 <div style="position: relative;bottom:16px;right:0px;">
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">省级用户&nbsp;：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled="" id="provinceUser" class="form-control" onchange="checkNum(this)"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">市级用户&nbsp;：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled="" id="cityUser" class="form-control" onchange="checkNum(this)"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">县/区用户：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled="" id="countyUser" class="form-control" onchange="checkNum(this)"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-5 control-label">
+				            <font face="微软雅黑">乡/镇用户：</font>
+				        </div>
+				        <div class="col-xs-5">
+				            <input type="text" disabled ="" id="townUser" class="form-control" onchange="checkNum(this)"/>
+				        </div>
+				        <div class="col-xs-1 control-label">
+				            <font face="微软雅黑">个</font>
+				        </div>
+				    </div>
+				    </div>
+				    <div class="row">
+					<div class="col-xs-12" align="right">
+						<button type="submit" class="btn btn-primary" data-toggle="modal"
+							 id=setting><b>设置</b></button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="reset" class="btn btn-primary" id=cancel><b>取消</b></button>
+					</div>
+				</div>
+				</form>
+				</div>
+				</div>
+				<br />
+				
+				</div>
+			</div>
+		</div>
+		
+		<!-- 提示模态框 -->
+	<!-- <button type="button" class="btn btn-info" data-toggle="modal"
+			data-target="#myWarnModal" style="display: none"
+			id="showWarn"></button> -->
+	<div class="modal fade" id="myWarnModal" tabindex="-1">
+		<div style="position: relative; top: 200px;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h5 class="modal-title" id="myModalLabel"><font size=3><b>提示</b></font></h5>
+					</div>
+					<div class="modal-body">
+						<span id="warn" >
+						
+						</span>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						id="sure">确定</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

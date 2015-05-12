@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.AuthorityMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.Authority" >
+    <id column="auth_id" property="authId" jdbcType="INTEGER" />
+    <result column="auth_name" property="authName" jdbcType="VARCHAR" />
+    <result column="auth_parentId" property="authParentid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="swust.edu.cn.threeExaminations.model.Authority" extends="BaseResultMap" >
+    <result column="auth_descibe" property="authDescibe" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    auth_id, auth_name, auth_parentId
+  </sql>
+  <sql id="Blob_Column_List" >
+    auth_descibe
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from authority
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from authority
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.Authority" >
+    insert into authority (auth_id, auth_name, auth_parentId, 
+      auth_descibe)
+    values (#{authId,jdbcType=INTEGER}, #{authName,jdbcType=VARCHAR}, #{authParentid,jdbcType=INTEGER}, 
+      #{authDescibe,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.Authority" >
+    insert into authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        auth_id,
+      </if>
+      <if test="authName != null" >
+        auth_name,
+      </if>
+      <if test="authParentid != null" >
+        auth_parentId,
+      </if>
+      <if test="authDescibe != null" >
+        auth_descibe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="authName != null" >
+        #{authName,jdbcType=VARCHAR},
+      </if>
+      <if test="authParentid != null" >
+        #{authParentid,jdbcType=INTEGER},
+      </if>
+      <if test="authDescibe != null" >
+        #{authDescibe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.Authority" >
+    update authority
+    <set >
+      <if test="authName != null" >
+        auth_name = #{authName,jdbcType=VARCHAR},
+      </if>
+      <if test="authParentid != null" >
+        auth_parentId = #{authParentid,jdbcType=INTEGER},
+      </if>
+      <if test="authDescibe != null" >
+        auth_descibe = #{authDescibe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.Authority" >
+    update authority
+    set auth_name = #{authName,jdbcType=VARCHAR},
+      auth_parentId = #{authParentid,jdbcType=INTEGER},
+      auth_descibe = #{authDescibe,jdbcType=LONGVARCHAR}
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.Authority" >
+    update authority
+    set auth_name = #{authName,jdbcType=VARCHAR},
+      auth_parentId = #{authParentid,jdbcType=INTEGER}
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </update>
+  <!-- 通过父类权限id查找子权限 -->
+  <select id="selectAuthByAuthParentId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from authority
+    where auth_parentId = #{authParentid,jdbcType=INTEGER}
+    order by auth_id
+  </select>
+</mapper>

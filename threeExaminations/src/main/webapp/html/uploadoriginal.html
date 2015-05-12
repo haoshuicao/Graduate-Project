@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>四川省健康优生服务系统</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+<style type="text/css">
+label {
+	font-size: 5%;
+}
+</style>
+</head>
+<body style="background-color: #F2F2F2">
+	<div class="container">
+		<img src="../images/title1.png" border="2" vspace="4" width="100%"
+			height="100%" align="bottom" />
+
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; width: 100%; text-align: center">
+					<font face="微软雅黑" size=3><b>登录信息</b></font>
+				</div>
+				<table class="table">
+					<tr>
+						<td><font face="微软雅黑" size=3>单位：</font></td>
+						<td id="unit" colspan="2"><font face="微软雅黑" size=3></font></td>
+					</tr>
+					<tr>
+						<td><font face="微软雅黑" size=3>用户：</font></td>
+						<td id="username"><font face="微软雅黑" size=3></font></td>
+						<td align="right">
+						<div style="position: relative; right: -7px;">
+						
+						<button id="logout" type="button" class="btn btn-primary" style="height:26px;width:38px;">
+								<div style="position: relative; bottom: 4px;right:6px;" align="center">
+									<font face="微软雅黑" size=2>注销</font>
+								</div>
+						</button>
+						</div>
+							</td>
+					</tr>
+				</table>
+				<div style="position: relative; bottom: 20px;">
+					<div class="form-control"
+						style="background-color: #3162BB; color: #FFFFFF; text-align: center">
+						<font face="微软雅黑" size=3><b>业务类型</b></font>
+					</div>
+					<ul id="authList" class="nav nav-pills nav-stacked" style="text-align: center">
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-xs-9">
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; text-align: left">
+					<font face="微软雅黑" size=3><b>上传原始名单</b></font>
+				</div>
+				<br />
+				<div style="position: relative; bottom: -8px;right:28px;">
+				<form class="form-horizontal">
+					<div class="form-group">
+				        <div class="col-xs-2 control-label">
+				            <font face="微软雅黑">选择上传路径:</font>
+				        </div>
+				        <div style="position: relative;right:14px;">
+				        <div class="col-xs-8">
+				            <input type="text" class="form-control"/>
+				        </div>
+				        </div>
+				        <div class="col-xs-1">
+				         <div style="position: relative;right:14px;">
+				            <input type="file" name="file" style="height:45px;font-size:100px;position:absolute;cursor:pointer;top:0;right:0;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;z-index:2;">
+				            
+				            </div>
+				        </div>
+				        <div style="position: relative; right: -24px;">
+				        <div class="col-xs-1" align="right">
+				             <div style="position: relative;right:14px;">
+				            <button class="btn btn-primary" data-toggle="modal"
+							data-target="#myModal">
+							<div style="position: relative;bottom:2px;">
+							<font face="微软雅黑"><b>上传</b></font>
+							</div>
+							</button>
+							</div>
+				        </div>
+				        </div>
+				    </div>
+				</form>
+				</div>
+				<div style="position: relative; bottom: -15px;">
+				<hr/>
+				</div>
+				<div class="modal fade" id="myModal" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h5 class="modal-title" id="myModalLabel"><font face="微软雅黑" size=3><b>请再次输入用户信息确认</b></font></h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>用户名：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Username" style="width:180px;">
+										</div>
+									</div>
+									<br />
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>密&nbsp;&nbsp;&nbsp;&nbsp;码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control"
+												id="exampleInputPassword2" placeholder="Password" style="width:180px;">
+										</div>
+									</div>
+									<br/>
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>验证码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Checkcode" style="width:180px;">
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">
+									<div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>确定</b> </font>
+									</div>
+								</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal"><div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>取消</b></font>
+									</div></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br />
+				<div style="position: relative; bottom: 8px;right:14px;">
+				<form class="form-inline">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<font face="微软雅黑">身份证号：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control" style="width:170px;">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					<div style="position: relative; right:-18px;">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<font face="微软雅黑">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control" style="width:170px;">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					</div>
+					<div style="position: relative; right:-36px;">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<font face="微软雅黑">户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control" style="width:170px;">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					</div>
+				</form>
+				</div>
+				<br/><br/>
+				<div style="position: relative; bottom: 8px;right:14px;">
+				<form class="form-inline">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<font face="微软雅黑">现居住镇：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control" style="width:170px;">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					<div style="position: relative; right:-18px;">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<font face="微软雅黑">现居住村：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control" style="width:170px;">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					</div>
+					<div style="position: relative; right:-36px;">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<font face="微软雅黑">居住状况：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control" style="width:170px;">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					</div>
+				</form>
+				</div>
+				<br/><br/>
+				<div style="position: relative; bottom: 8px;right:14px;">
+				<form class="form-inline">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<font face="微软雅黑">婚育证明号码：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					<div style="position: relative; right:-18px;">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<font face="微软雅黑">是否寄回三查情况：</font>
+						</div>
+						<div class="form-group">
+							<font face="微软雅黑">
+							<select class="form-control" style="width:115px;">
+									<option>身份证号</option>
+									<option>姓名</option>
+									<option>户籍地</option>
+									<option>现居住镇</option>
+									<option>现居住村</option>
+									<option>居住状况</option>
+									<option>婚育证明号码</option>
+									<option>是否寄回三查情况</option>
+							</select></font>
+						</div>
+					</div>
+					</div>
+					<div style="position: relative; right: -28px;">
+					<div class="col-xs-2" align="right">											
+				         <button class="btn btn-primary">
+				         <div style="position: relative;bottom:2px;">
+				         <font face="微软雅黑"><b>生成</b></font>
+				         </div>
+				         </button>		
+					</div>
+					</div>
+				</form>
+				</div>
+				<br/><br/><br/>
+				<div style="position: relative; bottom: 40px;">
+				<hr/>
+				</div>
+				<div style="position: relative; bottom: 40px;right:16px;">
+				<div class="col-xs-12 " align="center">
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th><font face="微软雅黑">身份证号</font></th>
+									<th><font face="微软雅黑">姓名</font></th>
+									<th><font face="微软雅黑">户籍地</font></th>
+									<th><font face="微软雅黑">现居住镇</font></th>
+									<th><font face="微软雅黑">现居住村</font></th>
+									<th><font face="微软雅黑">居住状况</font></th>
+									<th><font face="微软雅黑">婚育证明号码</font></th>
+									<th><font face="微软雅黑">是否寄回三查情况</font></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="success">
+									<td><font face="微软雅黑">******19920809****</font></td>
+									<td><font face="微软雅黑">张三</font></td>
+									<td><font face="微软雅黑">四川省绵阳市</font></td>
+									<td><font face="微软雅黑">石洞镇</font></td>
+									<td><font face="微软雅黑">十里村</font></td>
+									<td><font face="微软雅黑">常住</font></td>
+									<td><font face="微软雅黑">37849234</font></td>
+									<td align="center"><font face="微软雅黑">是</font></td>
+								</tr>
+								<tr>
+									<td><font face="微软雅黑">******19920809****</font></td>
+									<td><font face="微软雅黑">张三</font></td>
+									<td><font face="微软雅黑">四川省绵阳市</font></td>
+									<td><font face="微软雅黑">石洞镇</font></td>
+									<td><font face="微软雅黑">十里村</font></td>
+									<td><font face="微软雅黑">常住</font></td>
+									<td><font face="微软雅黑">37849234</font></td>
+									<td align="center"><font face="微软雅黑">是</font></td>
+								</tr>
+								<tr class="success">
+									<td><font face="微软雅黑">******19920809****</font></td>
+									<td><font face="微软雅黑">张三</font></td>
+									<td><font face="微软雅黑">四川省绵阳市</font></td>
+									<td><font face="微软雅黑">石洞镇</font></td>
+									<td><font face="微软雅黑">十里村</font></td>
+									<td><font face="微软雅黑">常住</font></td>
+									<td><font face="微软雅黑">37849234</font></td>
+									<td align="center"><font face="微软雅黑">是</font></td>
+								</tr>
+								<tr>
+									<td><font face="微软雅黑">******19920809****</font></td>
+									<td><font face="微软雅黑">张三</font></td>
+									<td><font face="微软雅黑">四川省绵阳市</font></td>
+									<td><font face="微软雅黑">石洞镇</font></td>
+									<td><font face="微软雅黑">十里村</font></td>
+									<td><font face="微软雅黑">常住</font></td>
+									<td><font face="微软雅黑">37849234</font></td>
+									<td align="center"><font face="微软雅黑">是</font></td>
+								</tr>
+								<tr class="success">
+									<td><font face="微软雅黑">******19920809****</font></td>
+									<td><font face="微软雅黑">张三</font></td>
+									<td><font face="微软雅黑">四川省绵阳市</font></td>
+									<td><font face="微软雅黑">石洞镇</font></td>
+									<td><font face="微软雅黑">十里村</font></td>
+									<td><font face="微软雅黑">常住</font></td>
+									<td><font face="微软雅黑">37849234</font></td>
+									<td align="center"><font face="微软雅黑">是</font></td>
+								</tr>
+								<tr>
+									<td><font face="微软雅黑">******19920809****</font></td>
+									<td><font face="微软雅黑">张三</font></td>
+									<td><font face="微软雅黑">四川省绵阳市</font></td>
+									<td><font face="微软雅黑">石洞镇</font></td>
+									<td><font face="微软雅黑">十里村</font></td>
+									<td><font face="微软雅黑">常住</font></td>
+									<td><font face="微软雅黑">37849234</font></td>
+									<td align="center"><font face="微软雅黑">是</font></td>
+								</tr>
+								<tr class="success">
+									<td><font face="微软雅黑">******19920809****</font></td>
+									<td><font face="微软雅黑">张三</font></td>
+									<td><font face="微软雅黑">四川省绵阳市</font></td>
+									<td><font face="微软雅黑">石洞镇</font></td>
+									<td><font face="微软雅黑">十里村</font></td>
+									<td><font face="微软雅黑">常住</font></td>
+									<td><font face="微软雅黑">37849234</font></td>
+									<td align="center"><font face="微软雅黑">是</font></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xs-12 " align="left">
+						<ul class="pagination">
+							<li class="disabled"><a href="#">&laquo;</a></li>
+							<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+</body>
+</html>

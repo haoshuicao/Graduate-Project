@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_loginName" property="userLoginname" jdbcType="VARCHAR" />
+    <result column="user_loginPwd" property="userLoginpwd" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="user_creatorId" property="userCreatorid" jdbcType="INTEGER" />
+    <result column="user_createTime" property="userCreatetime" jdbcType="TIMESTAMP" />
+    <result column="user_areaId" property="userAreaid" jdbcType="INTEGER" />
+    <result column="user_level" property="userLevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_loginName, user_loginPwd, user_name, user_email, user_phone, user_type, 
+    user_creatorId, user_createTime, user_areaId, user_level
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.User" >
+    insert into user (user_id, user_loginName, user_loginPwd, 
+      user_name, user_email, user_phone, 
+      user_type, user_creatorId, user_createTime, 
+      user_areaId, user_level)
+    values (#{userId,jdbcType=INTEGER}, #{userLoginname,jdbcType=VARCHAR}, #{userLoginpwd,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{userCreatorid,jdbcType=INTEGER}, #{userCreatetime,jdbcType=TIMESTAMP}, 
+      #{userAreaid,jdbcType=INTEGER}, #{userLevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userLoginname != null" >
+        user_loginName,
+      </if>
+      <if test="userLoginpwd != null" >
+        user_loginPwd,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userCreatorid != null" >
+        user_creatorId,
+      </if>
+      <if test="userCreatetime != null" >
+        user_createTime,
+      </if>
+      <if test="userAreaid != null" >
+        user_areaId,
+      </if>
+      <if test="userLevel != null" >
+        user_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userLoginname != null" >
+        #{userLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginpwd != null" >
+        #{userLoginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreatorid != null" >
+        #{userCreatorid,jdbcType=INTEGER},
+      </if>
+      <if test="userCreatetime != null" >
+        #{userCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userAreaid != null" >
+        #{userAreaid,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null" >
+        #{userLevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.User" >
+    update user
+    <set >
+      <if test="userLoginname != null" >
+        user_loginName = #{userLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginpwd != null" >
+        user_loginPwd = #{userLoginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreatorid != null" >
+        user_creatorId = #{userCreatorid,jdbcType=INTEGER},
+      </if>
+      <if test="userCreatetime != null" >
+        user_createTime = #{userCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userAreaid != null" >
+        user_areaId = #{userAreaid,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null" >
+        user_level = #{userLevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.User" >
+    update user
+    set user_loginName = #{userLoginname,jdbcType=VARCHAR},
+      user_loginPwd = #{userLoginpwd,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      user_creatorId = #{userCreatorid,jdbcType=INTEGER},
+      user_createTime = #{userCreatetime,jdbcType=TIMESTAMP},
+      user_areaId = #{userAreaid,jdbcType=INTEGER},
+      user_level = #{userLevel,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+   <update id="updatePwd" parameterType="swust.edu.cn.threeExaminations.model.User" >
+    update user
+    set user_loginPwd = #{userLoginpwd,jdbcType=VARCHAR}
+    where user_loginName = #{userLoginname,jdbcType=VARCHAR} and user_email = #{userEmail,jdbcType=VARCHAR}
+  </update>
+  <!-- 登录时调用 -->
+  <select id="findUserByNAP" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_loginName = #{userLoginname,jdbcType=VARCHAR} and user_loginPwd = #{userLoginpwd,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="findIsExist" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_loginName = #{userLoginname,jdbcType=VARCHAR} and user_email = #{userEmail,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findPassword" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select user_loginPwd,user_email
+    from user
+    where user_loginName = #{userLoginname,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 通过用户登录名查找某用户 -->
+  <select id="findUserByUserLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
+ 	select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_loginName = #{userLoginname,jdbcType=VARCHAR}
+  </select>
+  <!-- 查找所有用户 -->
+  <select id="findAllUser" resultMap="BaseResultMap">
+ 	select 
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+  <!-- 查找所有管理员用户 -->
+  <select id="findUserByUserType" resultMap="BaseResultMap">
+ 	select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_type = #{userType,jdbcType=VARCHAR}
+  </select>
+  <!-- 通过地区查询用户 -->
+  <select id="findUserByAreaId" resultMap="BaseResultMap">
+ 	select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_areaId = #{userAreaid,jdbcType=INTEGER}
+  </select>
+  <!-- 通过地区、类型、关键字查询用户 -->
+  <select id="findUserByAreaIdAndType" resultMap="BaseResultMap">
+ 	select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_areaId = #{userAreaid,jdbcType=INTEGER} and user_type = #{userType,jdbcType=VARCHAR} and user_loginName like #{userLoginname,jdbcType=VARCHAR}
+  </select>
+  <!-- 通过类型、关键字查询用户 -->
+  <select id="findUserByPrimaryAndType" resultMap="BaseResultMap">
+ 	select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_type = #{userType,jdbcType=VARCHAR} and user_loginName like #{userLoginname,jdbcType=VARCHAR}
+  </select>
+  <!-- 查询某地区已经存在的用户数 -->
+  <select id="findExitUserNum" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+ 	select count(user_id)
+    from user
+    where user_areaId = #{userAreaid,jdbcType=INTEGER}
+  </select>
+</mapper>

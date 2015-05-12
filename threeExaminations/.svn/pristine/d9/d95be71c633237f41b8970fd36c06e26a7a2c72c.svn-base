@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.AreaMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.Area" >
+    <id column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="area_parentId" property="areaParentid" jdbcType="INTEGER" />
+    <result column="area_maxUser" property="areaMaxuser" jdbcType="INTEGER" />
+    <result column="area_existUser" property="areaExistuser" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    area_id, area_name, area_parentId, area_maxUser, area_existUser
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    insert into area (area_id, area_name, area_parentId, 
+      area_maxUser, area_existUser)
+    values (#{areaId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{areaParentid,jdbcType=INTEGER}, 
+      #{areaMaxuser,jdbcType=INTEGER}, #{areaExistuser,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="areaParentid != null" >
+        area_parentId,
+      </if>
+      <if test="areaMaxuser != null" >
+        area_maxUser,
+      </if>
+      <if test="areaExistuser != null" >
+        area_existUser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentid != null" >
+        #{areaParentid,jdbcType=INTEGER},
+      </if>
+      <if test="areaMaxuser != null" >
+        #{areaMaxuser,jdbcType=INTEGER},
+      </if>
+      <if test="areaExistuser != null" >
+        #{areaExistuser,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    update area
+    <set >
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentid != null" >
+        area_parentId = #{areaParentid,jdbcType=INTEGER},
+      </if>
+      <if test="areaMaxuser != null" >
+        area_maxUser = #{areaMaxuser,jdbcType=INTEGER},
+      </if>
+      <if test="areaExistuser != null" >
+        area_existUser = #{areaExistuser,jdbcType=INTEGER},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    update area
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      area_parentId = #{areaParentid,jdbcType=INTEGER},
+      area_maxUser = #{areaMaxuser,jdbcType=INTEGER},
+      area_existUser = #{areaExistuser,jdbcType=INTEGER}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 自己写的方法 selectByParentId -->
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_parentId = #{areaParentid ,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectNameParentIdByAreaId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select area_name,area_parentId
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 自己写的方法 selectByName -->
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_name = #{areaName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByAreaId" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <select id="selectNameById" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    select area_name
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+   <select id="selectNameByAreaId" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    select area_name
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <!-- 自己写的方法 selectAreaIdByAreaName -->
+  <select id="selectAreaIdByAreaName" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.Area" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_name = #{areaName,jdbcType=VARCHAR}
+  </select>
+</mapper>

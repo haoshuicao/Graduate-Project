@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.AttachmentMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.Attachment" >
+    <id column="atta_id" property="attaId" jdbcType="INTEGER" />
+    <result column="atta_systemName" property="attaSystemname" jdbcType="VARCHAR" />
+    <result column="atta_pageName" property="attaPagename" jdbcType="VARCHAR" />
+    <result column="atta_uploadPath" property="attaUploadpath" jdbcType="VARCHAR" />
+    <result column="atta_annoId" property="attaAnnoid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    atta_id, atta_systemName, atta_pageName, atta_uploadPath, atta_annoId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from attachment
+    where atta_id = #{attaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from attachment
+    where atta_id = #{attaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.Attachment" >
+    insert into attachment (atta_id, atta_systemName, atta_pageName, 
+      atta_uploadPath, atta_annoId)
+    values (#{attaId,jdbcType=INTEGER}, #{attaSystemname,jdbcType=VARCHAR}, #{attaPagename,jdbcType=VARCHAR}, 
+      #{attaUploadpath,jdbcType=VARCHAR}, #{attaAnnoid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.Attachment" >
+    insert into attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attaId != null" >
+        atta_id,
+      </if>
+      <if test="attaSystemname != null" >
+        atta_systemName,
+      </if>
+      <if test="attaPagename != null" >
+        atta_pageName,
+      </if>
+      <if test="attaUploadpath != null" >
+        atta_uploadPath,
+      </if>
+      <if test="attaAnnoid != null" >
+        atta_annoId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attaId != null" >
+        #{attaId,jdbcType=INTEGER},
+      </if>
+      <if test="attaSystemname != null" >
+        #{attaSystemname,jdbcType=VARCHAR},
+      </if>
+      <if test="attaPagename != null" >
+        #{attaPagename,jdbcType=VARCHAR},
+      </if>
+      <if test="attaUploadpath != null" >
+        #{attaUploadpath,jdbcType=VARCHAR},
+      </if>
+      <if test="attaAnnoid != null" >
+        #{attaAnnoid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.Attachment" >
+    update attachment
+    <set >
+      <if test="attaSystemname != null" >
+        atta_systemName = #{attaSystemname,jdbcType=VARCHAR},
+      </if>
+      <if test="attaPagename != null" >
+        atta_pageName = #{attaPagename,jdbcType=VARCHAR},
+      </if>
+      <if test="attaUploadpath != null" >
+        atta_uploadPath = #{attaUploadpath,jdbcType=VARCHAR},
+      </if>
+      <if test="attaAnnoid != null" >
+        atta_annoId = #{attaAnnoid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where atta_id = #{attaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.Attachment" >
+    update attachment
+    set atta_systemName = #{attaSystemname,jdbcType=VARCHAR},
+      atta_pageName = #{attaPagename,jdbcType=VARCHAR},
+      atta_uploadPath = #{attaUploadpath,jdbcType=VARCHAR},
+      atta_annoId = #{attaAnnoid,jdbcType=INTEGER}
+    where atta_id = #{attaId,jdbcType=INTEGER}
+  </update>
+  <!-- 通过公告id查询附件 -->
+  <select id="selectByAnnoId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from attachment
+    where atta_annoId = #{attaAnnoid,jdbcType=INTEGER}
+  </select>
+  <!-- 通过附件名查询附件 -->
+  <select id="selectByAttaPageName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from attachment
+    where atta_pageName = #{attaPagename,jdbcType=INTEGER}
+  </select>
+  <!-- 根据公告id删除附件 -->
+  <delete id="deleteByAnnoId" parameterType="java.lang.Integer" >
+    delete from attachment
+    where atta_annoId = #{attaAnnoid,jdbcType=INTEGER}
+  </delete>
+</mapper>

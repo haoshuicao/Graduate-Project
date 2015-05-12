@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.ScreeningRulesMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.ScreeningRules" >
+    <id column="scru_id" property="scruId" jdbcType="INTEGER" />
+    <result column="scru_idNumber" property="scruIdnumber" jdbcType="VARCHAR" />
+    <result column="scru_name" property="scruName" jdbcType="VARCHAR" />
+    <result column="scru_householdRegister" property="scruHouseholdregister" jdbcType="VARCHAR" />
+    <result column="scru_nowLiveTown" property="scruNowlivetown" jdbcType="VARCHAR" />
+    <result column="scru_nowLiveVillage" property="scruNowlivevillage" jdbcType="VARCHAR" />
+    <result column="scru_liveState" property="scruLivestate" jdbcType="VARCHAR" />
+    <result column="scru_marriagecerTificateId" property="scruMarriagecertificateid" jdbcType="VARCHAR" />
+    <result column="scru_isSendBackCheck" property="scruIssendbackcheck" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scru_id, scru_idNumber, scru_name, scru_householdRegister, scru_nowLiveTown, scru_nowLiveVillage, 
+    scru_liveState, scru_marriagecerTificateId, scru_isSendBackCheck
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from screeningrules
+    where scru_id = #{scruId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from screeningrules
+    where scru_id = #{scruId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.ScreeningRules" >
+    insert into screeningrules (scru_id, scru_idNumber, scru_name, 
+      scru_householdRegister, scru_nowLiveTown, 
+      scru_nowLiveVillage, scru_liveState, scru_marriagecerTificateId, 
+      scru_isSendBackCheck)
+    values (#{scruId,jdbcType=INTEGER}, #{scruIdnumber,jdbcType=VARCHAR}, #{scruName,jdbcType=VARCHAR}, 
+      #{scruHouseholdregister,jdbcType=VARCHAR}, #{scruNowlivetown,jdbcType=VARCHAR}, 
+      #{scruNowlivevillage,jdbcType=VARCHAR}, #{scruLivestate,jdbcType=VARCHAR}, #{scruMarriagecertificateid,jdbcType=VARCHAR}, 
+      #{scruIssendbackcheck,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.ScreeningRules" >
+    insert into screeningrules
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scruId != null" >
+        scru_id,
+      </if>
+      <if test="scruIdnumber != null" >
+        scru_idNumber,
+      </if>
+      <if test="scruName != null" >
+        scru_name,
+      </if>
+      <if test="scruHouseholdregister != null" >
+        scru_householdRegister,
+      </if>
+      <if test="scruNowlivetown != null" >
+        scru_nowLiveTown,
+      </if>
+      <if test="scruNowlivevillage != null" >
+        scru_nowLiveVillage,
+      </if>
+      <if test="scruLivestate != null" >
+        scru_liveState,
+      </if>
+      <if test="scruMarriagecertificateid != null" >
+        scru_marriagecerTificateId,
+      </if>
+      <if test="scruIssendbackcheck != null" >
+        scru_isSendBackCheck,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scruId != null" >
+        #{scruId,jdbcType=INTEGER},
+      </if>
+      <if test="scruIdnumber != null" >
+        #{scruIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="scruName != null" >
+        #{scruName,jdbcType=VARCHAR},
+      </if>
+      <if test="scruHouseholdregister != null" >
+        #{scruHouseholdregister,jdbcType=VARCHAR},
+      </if>
+      <if test="scruNowlivetown != null" >
+        #{scruNowlivetown,jdbcType=VARCHAR},
+      </if>
+      <if test="scruNowlivevillage != null" >
+        #{scruNowlivevillage,jdbcType=VARCHAR},
+      </if>
+      <if test="scruLivestate != null" >
+        #{scruLivestate,jdbcType=VARCHAR},
+      </if>
+      <if test="scruMarriagecertificateid != null" >
+        #{scruMarriagecertificateid,jdbcType=VARCHAR},
+      </if>
+      <if test="scruIssendbackcheck != null" >
+        #{scruIssendbackcheck,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.ScreeningRules" >
+    update screeningrules
+    <set >
+      <if test="scruIdnumber != null" >
+        scru_idNumber = #{scruIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="scruName != null" >
+        scru_name = #{scruName,jdbcType=VARCHAR},
+      </if>
+      <if test="scruHouseholdregister != null" >
+        scru_householdRegister = #{scruHouseholdregister,jdbcType=VARCHAR},
+      </if>
+      <if test="scruNowlivetown != null" >
+        scru_nowLiveTown = #{scruNowlivetown,jdbcType=VARCHAR},
+      </if>
+      <if test="scruNowlivevillage != null" >
+        scru_nowLiveVillage = #{scruNowlivevillage,jdbcType=VARCHAR},
+      </if>
+      <if test="scruLivestate != null" >
+        scru_liveState = #{scruLivestate,jdbcType=VARCHAR},
+      </if>
+      <if test="scruMarriagecertificateid != null" >
+        scru_marriagecerTificateId = #{scruMarriagecertificateid,jdbcType=VARCHAR},
+      </if>
+      <if test="scruIssendbackcheck != null" >
+        scru_isSendBackCheck = #{scruIssendbackcheck,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where scru_id = #{scruId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.ScreeningRules" >
+    update screeningrules
+    set scru_idNumber = #{scruIdnumber,jdbcType=VARCHAR},
+      scru_name = #{scruName,jdbcType=VARCHAR},
+      scru_householdRegister = #{scruHouseholdregister,jdbcType=VARCHAR},
+      scru_nowLiveTown = #{scruNowlivetown,jdbcType=VARCHAR},
+      scru_nowLiveVillage = #{scruNowlivevillage,jdbcType=VARCHAR},
+      scru_liveState = #{scruLivestate,jdbcType=VARCHAR},
+      scru_marriagecerTificateId = #{scruMarriagecertificateid,jdbcType=VARCHAR},
+      scru_isSendBackCheck = #{scruIssendbackcheck,jdbcType=VARCHAR}
+    where scru_id = #{scruId,jdbcType=INTEGER}
+  </update>
+</mapper>

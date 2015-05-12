@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.AnnouncementMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.Announcement" >
+    <id column="anno_id" property="annoId" jdbcType="INTEGER" />
+    <result column="anno_title" property="annoTitle" jdbcType="VARCHAR" />
+    <result column="anno_publishTime" property="annoPublishtime" jdbcType="TIMESTAMP" />
+    <result column="anno_lastModifyTime" property="annoLastmodifytime" jdbcType="TIMESTAMP" />
+    <result column="anno_isDelete" property="annoIsdelete" jdbcType="INTEGER" />
+    <result column="anno_userId" property="annoUserid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="swust.edu.cn.threeExaminations.model.Announcement" extends="BaseResultMap" >
+    <result column="anno_content" property="annoContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    anno_id, anno_title, anno_publishTime, anno_lastModifyTime, anno_isDelete, anno_userId
+  </sql>
+  <sql id="Blob_Column_List" >
+    anno_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from announcement
+    where anno_id = #{annoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from announcement
+    where anno_id = #{annoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.Announcement" >
+    insert into announcement (anno_id, anno_title, anno_publishTime, 
+      anno_lastModifyTime, anno_isDelete, anno_userId, 
+      anno_content)
+    values (#{annoId,jdbcType=INTEGER}, #{annoTitle,jdbcType=VARCHAR}, #{annoPublishtime,jdbcType=TIMESTAMP}, 
+      #{annoLastmodifytime,jdbcType=TIMESTAMP}, #{annoIsdelete,jdbcType=INTEGER}, #{annoUserid,jdbcType=INTEGER}, 
+      #{annoContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.Announcement" >
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="annoId != null" >
+        anno_id,
+      </if>
+      <if test="annoTitle != null" >
+        anno_title,
+      </if>
+      <if test="annoPublishtime != null" >
+        anno_publishTime,
+      </if>
+      <if test="annoLastmodifytime != null" >
+        anno_lastModifyTime,
+      </if>
+      <if test="annoIsdelete != null" >
+        anno_isDelete,
+      </if>
+      <if test="annoUserid != null" >
+        anno_userId,
+      </if>
+      <if test="annoContent != null" >
+        anno_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="annoId != null" >
+        #{annoId,jdbcType=INTEGER},
+      </if>
+      <if test="annoTitle != null" >
+        #{annoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="annoPublishtime != null" >
+        #{annoPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="annoLastmodifytime != null" >
+        #{annoLastmodifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="annoIsdelete != null" >
+        #{annoIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="annoUserid != null" >
+        #{annoUserid,jdbcType=INTEGER},
+      </if>
+      <if test="annoContent != null" >
+        #{annoContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.Announcement" >
+    update announcement
+    <set >
+      <if test="annoTitle != null" >
+        anno_title = #{annoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="annoPublishtime != null" >
+        anno_publishTime = #{annoPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="annoLastmodifytime != null" >
+        anno_lastModifyTime = #{annoLastmodifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="annoIsdelete != null" >
+        anno_isDelete = #{annoIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="annoUserid != null" >
+        anno_userId = #{annoUserid,jdbcType=INTEGER},
+      </if>
+      <if test="annoContent != null" >
+        anno_content = #{annoContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where anno_id = #{annoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.Announcement" >
+    update announcement
+    set anno_title = #{annoTitle,jdbcType=VARCHAR},
+      anno_publishTime = #{annoPublishtime,jdbcType=TIMESTAMP},
+      anno_lastModifyTime = #{annoLastmodifytime,jdbcType=TIMESTAMP},
+      anno_isDelete = #{annoIsdelete,jdbcType=INTEGER},
+      anno_userId = #{annoUserid,jdbcType=INTEGER},
+      anno_content = #{annoContent,jdbcType=LONGVARCHAR}
+    where anno_id = #{annoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.Announcement" >
+    update announcement
+    set anno_title = #{annoTitle,jdbcType=VARCHAR},
+      anno_publishTime = #{annoPublishtime,jdbcType=TIMESTAMP},
+      anno_lastModifyTime = #{annoLastmodifytime,jdbcType=TIMESTAMP},
+      anno_isDelete = #{annoIsdelete,jdbcType=INTEGER},
+      anno_userId = #{annoUserid,jdbcType=INTEGER}
+    where anno_id = #{annoId,jdbcType=INTEGER}
+  </update>
+  
+  <!--查询当前用户所发布的公告-->
+  <select id="selectByUserId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from announcement
+    where anno_userId = #{annoUserid,jdbcType=INTEGER} and anno_isDelete = '0'
+    order by anno_lastModifyTime desc
+  </select>
+  
+ <!--查询状态不为删除的公告-->
+  <select id="selectAllAnno" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from announcement
+    where anno_isDelete = '0'
+    order by anno_lastModifyTime desc
+  </select>
+  
+  <!--通过公告主题查询未删除的公告-->
+  <select id="selectAnnoByTitle" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from announcement
+    where anno_isDelete = '0' and anno_title = #{annoTitle,jdbcType=VARCHAR}
+  </select>  
+</mapper>

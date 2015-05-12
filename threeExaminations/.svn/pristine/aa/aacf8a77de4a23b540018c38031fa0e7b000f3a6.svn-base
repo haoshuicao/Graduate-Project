@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划生育健康优生信息管理系统</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../javascript/jPaginate/css/style.css" media="screen"/>
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+
+<script type="text/javascript" src="../dist/jquery.min.js"></script>
+<script type="text/javascript" src="../dist/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="../dist/excanvas.js"></script>
+<script type="text/javascript" src="../dist/plugins/jqplot.barRenderer.min.js"></script>
+<script type="text/javascript" src="../dist/plugins/jqplot.pieRenderer.min.js"></script>
+<script type="text/javascript" src="../dist/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="../dist/plugins/jqplot.pointLabels.min.js"></script>
+
+<script type="text/javascript" src="../javascript/jquery.PrintArea.js"></script>
+
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/surveyRate.js"></script>
+<script type="text/javascript" src="../js/characterreport.js"></script>
+<script type="text/javascript" src="../javascript/jPaginate/jquery.paginate.js" ></script>
+
+<link rel="stylesheet" type="text/css" href="../dist/jquery.jqplot.min.css" />
+
+<style type="text/css">
+label {
+	font-size: 5%;
+}
+</style>
+</head>
+<body style="background-color: #F2F2F2">
+
+	<div class="container">
+		<img src="../images/titleJPG2.jpg" border="2" vspace="4" width="100%"
+			height="100%" align="bottom" />
+
+		<div class="row">
+			<div class="col-xs-3 ">
+				<!-- 左侧导航 -->
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; width: 100%; text-align: center">
+					<font size=3><b>登录信息</b></font>
+				</div>
+				<table class="table">
+					<tr>
+						<td style="width:58px;">单位：</td>
+						<td id="unit" colspan="2"></td>
+					</tr>
+					<tr>
+						<td>用户：</td>
+						<td id="username"></td>
+						<td align="right">
+						<div style="position: relative; right: -7px;">
+						
+						<button id="logout" type="button" class="btn btn-primary" style="height:26px;width:38px;">
+								<div style="position: relative; bottom: 4px;right:8px;" align="center">
+									<b>注销</b>
+								</div>
+						</button>
+						</div>
+							</td>
+					</tr>
+				</table>
+				<div style="position: relative; bottom: 20px;">
+					<div class="form-control"
+						style="background-color: #3162BB; color: #FFFFFF; text-align: center">
+						<font size=3><b>业务类型</b></font>
+					</div>
+					<b><ul id="authList" class="nav nav-pills nav-stacked" style="text-align: center">
+						<!-- <li><a href="../html/announcement.html"><font face="微软雅黑" size=3>公告信息</font></a></li>
+						<li><a href="../html/task.html"><font face="微软雅黑" size=3>任务信息</font></a></li>	 -->					
+					</ul></b>
+					<!-- <div class="form-control"
+						style="background-color: #7CCD7C; text-align: center">
+						<font face="微软雅黑" size=3 color="#FFFFFF"><b>优生服务管理</b></font>
+					</div>
+					<ul class="nav nav-pills nav-stacked" style="text-align: center">
+						<li><a href="../html/uploadoriginal.html"><font face="微软雅黑" size=3>上传原始名单</font></a></li>
+						<li><a href="../html/checkthreelist.html"><font face="微软雅黑" size=3>查看三查名单</font></a></li>
+						<li><a href="../html/uploadserverrecord.html"><font face="微软雅黑" size=3>上传服务记录</font></a></li>
+						<li><a href="../html/lookserverrecord.html"><font face="微软雅黑" size=3>查看服务记录</font></a></li>
+						<li><a href="../html/addserverrecord.html"><font face="微软雅黑" size=3>添加服务记录</font></a></li>
+						<li><a href="../html/standardreport.html"><font face="微软雅黑" size=3>标准统计报表</font></a></li>
+						<li><a href="../html/characterreport.html"><font face="微软雅黑" size=3>特征统计报表</font></a></li>
+						<li><a href="../html/printserverrecord.html"><font face="微软雅黑" size=3>打印服务记录</font></a></li>
+					</ul> -->
+				</div>
+			</div>
+
+			<div class="col-xs-9">
+				<!-- 主要页面 -->
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; text-align: left">
+					<font size=3><b>特征统计报表</b></font>
+				</div>
+				<br/>
+				<div style="position: relative; bottom: 4px;">
+				<form class="form-inline">
+				<div style="position: relative;right:14px;">
+					<div class="col-xs-4">
+						<div class="form-group">
+							年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：
+						</div>
+						<div class="form-group">
+							
+							<select class="form-control" style="width:170px;" id=year>
+								<option>2030</option>
+									<option>2029</option>
+									<option>2028</option>
+									<option>2027</option>
+									<option>2026</option>
+									<option>2025</option>
+									<option>2024</option>
+									<option>2023</option>
+									<option>2022</option>
+									<option>2021</option>
+									<option>2020</option>
+									<option>2019</option>
+									<option>2018</option>
+									<option>2017</option>
+									<option>2016</option>
+									<option>2015</option>
+									<option selected="selected">2014</option>
+									<option>2013</option>
+									<option>2012</option>
+									<option>2011</option>
+									<option>2010</option>
+									<option>2009</option>
+									<option>2008</option>
+									<option>2007</option>
+									<option>2006</option>
+									<option>2005</option>
+							</select>
+						</div>
+					</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="form-group">
+							批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：
+						</div>
+						<div class="form-group">
+							
+							<select class="form-control" style="width:170px;" id=patch>
+								<option>第一批次</option>
+				                <option>第二批次</option>
+				                <option>第三批次</option>
+							</select>
+						</div>
+					</div>
+					<div style="position: relative;right:-18px;">
+					<div class="col-xs-4">
+						<div class="form-group">
+							选择地区：
+						</div>
+						<div class="form-group">
+							
+							<select class="form-control" style="width:175px;" id="vallige">
+								<!-- <option>全部</option>
+								<option>天池山</option>
+								<option>河边村</option>
+				                <option>十里村</option>
+				                <option>龙湾村</option>
+				                <option>青羊村</option>
+				                <option>丰谷村</option>
+				                <option>杨家村</option> -->
+							</select>
+						</div>
+					</div>
+					</div>
+				</form>
+				</div>
+				<br/><br/>
+				<div style="position: relative; bottom: 0px;">
+				<form class="form-inline">
+				<div style="position: relative;right:14px;">
+					<div class="col-xs-8">
+						<div class="form-group">
+							特征选择：
+						</div>
+						<div class="form-group">
+							
+							<select class="form-control" id=peopleClass>
+								<option>全部人口普查率，计外补救率，妇科病率</option>
+				                <option>常住人口普查率，计外补救率，妇科病率</option>
+				                <option>流入人口普查率，计外补救率，妇科病率</option>
+				                <option>流出人口普查率，计外补救率，妇科病率</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-4" align="right" style="position: relative; right:-29px;">
+						<div class="form-group">
+							<button type="button"  class="btn btn-primary" id="onok">
+				             <b>确定</b>
+				            </button>
+						</div>
+					</div>
+					</div>
+					</form>
+					</div>
+                     <br/>
+			    <div style="position: relative; bottom:-10px;">
+			    <hr/>
+			    </div>
+			  <!-- 报表 -->
+			  <br/>
+				<div style="position: relative; bottom: 8px;right:8px;">
+				<div class="col-xs-14" align="left" id="show">
+							<table class="table table-condensed" id="list">
+								
+							</table>
+						</div>
+				</div>
+				<br/><br/>
+					<div style="position: relative;right:6px;bottom: 30px;">
+					
+					    <div class="col-xs-12" align="left" id="demo5">	
+						</div>
+						<div class="col-xs-12" align="right" style="display:none;" id="downloadAndPrint">
+							<button type="button" class="btn btn-primary" id="download">
+								<div style="position: relative; bottom: 2px;">
+									<b>下载</b>
+								</div>
+							</button>
+							<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-primary" id="print_button1">
+								<div style="position: relative; bottom: 2px;">
+									<b>打印</b>
+								</div>
+							</button> -->
+						</div>
+						
+						
+						<div style="position: relative;right:15px;">
+						<div class="col-xs-12" align="left" id="CountRate" style="display:none;">
+						<br/>
+						<button type="button" class="btn btn-info" id=surveyRate>普查率</button>
+						<button type="button" class="btn btn-info" id=outPlanBuJiuRate>计外孕补救率</button>
+						<button type="button" class="btn btn-info" id=fuKeBingRate>妇科病率</button>
+						</div>
+						</div>
+						<br/>
+					</div>
+					<div class="col-xs-12"  style="position: relative;overflow: auto; overflow-y:hidden;">
+						<div id="baobiao" style="display:none;width: 4000px;">
+						<div style="position: relative;right:-250px;">
+						<div id="title">
+						</div>
+						</div>
+						<br/>
+						<div>
+						<span id="info1"></span>
+						</div>
+							<div id="image"></div>
+							<div id="chart1" style="position: relative;" style="display:none;"></div>
+					</div>
+					
+					</div>
+					<br/><br/><br/>
+					<div style="position: relative; bottom:40px;right: -10px;">
+						<div class="col-xs-12" align="right" id="printReport" style="display:none;">
+							<button type="button" class="btn btn-primary" id="print_button2">
+								<div style="position: relative; bottom: 2px;">
+									<b>打印</b>
+								</div>
+							</button>
+						</div>
+					</div>
+					<!-- Modal -->
+				<div class="modal fade" id="myModal1" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h5 class="modal-title" id="myModalLabel"><font face="微软雅黑" size=3><b>请再次输入用户信息确认</b></font></h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>用户名：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Username" style="width:180px;">
+										</div>
+									</div>
+									<br />
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>密&nbsp;&nbsp;&nbsp;&nbsp;码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control"
+												id="exampleInputPassword2" placeholder="Password" style="width:180px;">
+										</div>
+									</div>
+									<br/>
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>验证码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Checkcode" style="width:180px;">
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">
+									<div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>确定</b> </font>
+									</div>
+								</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal"><div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>取消</b></font>
+									</div></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="myModal2" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h5 class="modal-title" id="myModalLabel"><font face="微软雅黑" size=3><b>请再次输入用户信息确认</b></font></h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>用户名：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Username" style="width:180px;">
+										</div>
+									</div>
+									<br />
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>密&nbsp;&nbsp;&nbsp;&nbsp;码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control"
+												id="exampleInputPassword2" placeholder="Password" style="width:180px;">
+										</div>
+									</div>
+									<br/>
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>验证码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Checkcode" style="width:180px;">
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">
+									<div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>确定</b> </font>
+									</div>
+								</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal"><div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>取消</b></font>
+									</div></button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

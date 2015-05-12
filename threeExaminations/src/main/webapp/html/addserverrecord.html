@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划生育健康优生信息管理系统</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+<script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../javascript/idCardCheck.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/addserverrecord.js"></script>
+
+
+<style type="text/css">
+label {
+	font-size: 5%;
+}
+hr{
+border:none;
+border-top:1px solid rgb(191,191,191);
+height:0;
+}
+</style>
+</head>
+<body style="background-color: #F2F2F2">
+	<div class="container">
+		<img src="../images/titleJPG2.jpg" border="2" vspace="4" width="100%"
+			height="100%" align="bottom" />
+
+		<div class="row">
+			<div class="col-xs-3 ">
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; width: 100%; text-align: center">
+					<font  size=3><b>登录信息</b></font>
+				</div>
+				<table class="table">
+					<tr>
+						<td style="width:58px;">单位：</td>
+						<td id="unit" colspan="2"></td>
+					</tr>
+					<tr>
+						<td>用户：</td>
+						<td id="username"></td>
+						<td align="right">
+						<div style="position: relative; right: -7px;">
+						
+						<button id="logout" type="submit" class="btn btn-primary" style="height:26px;width:38px;">
+								<div style="position: relative; bottom: 4px;right:8px;" align="center">
+									<b>注销</b>
+								</div>
+						</button>
+						</div>
+							</td>
+					</tr>
+				</table>
+				<div style="position: relative; bottom: 20px;">
+					<div class="form-control"
+						style="background-color: #3162BB; color: #FFFFFF; text-align: center">
+						<font face="微软雅黑" size=3><b>业务类型</b></font>
+					</div>
+					<b><ul id="authList" class="nav nav-pills nav-stacked" style="text-align: center">
+											
+					</ul></b>
+					
+				</div>
+			</div>
+
+			<div class="col-xs-9">
+				<!-- 主要页面 -->
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; text-align: left">
+					<font size=3><b>添加服务记录</b></font>
+				</div>
+				<br />
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-xs-2 control-label">
+							姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</div>
+						<div class="col-xs-4">
+							<input type="text" id="womanName" name="womanName"
+								class="form-control" onblur="validateName()" onfocus="empty1()"/>
+						</div>
+						<div style="position: relative; bottom: -5px;">
+							<div class="col-xs-4">
+								<span id="isNull" style="display: none"><font color="red">输入内容不能为空！</font></span>
+								<span id="fanWei" style="display: none"><font color="red">请输入4-20字符范围内的内容！</font></span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-2 control-label">身份证号:</div>
+						<div class="col-xs-4">
+							<input type="text" id="womanIdCard" class="form-control"
+								onblur="onWomanIdCardCheck()" onfocus="empty2()"/>
+						</div>
+						<div style="position: relative; bottom: -5px;">
+							<div class="col-xs-4">
+								<span id="idIsNull" style="display: none"><font
+									color="red">输入内容不能为空！</font></span> 
+									<span id="idIsRight"
+									style="display: none"><font color="red">请输入正确的身份证号码！</font></span>
+									<span id="idIsFemale" style="display: none"><font
+									color="red">请输入女性的身份证号！</font></span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+							<div class="col-xs-2 control-label">居住状态:</div>
+							<div class="col-xs-4">
+								<!-- <input type="text" id="checkPatch" class="form-control"/> -->
+
+								<select class="form-control" id="liveState">
+									<option>常住</option>
+									<option>流入</option>
+									<option>流出</option>
+								</select>
+							</div>
+						</div>
+					<div class="form-group">
+					
+						<div class="col-xs-2 control-label">
+							户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;籍:</div>
+						<div class="col-xs-2">
+
+							<select class="form-control" id="womanProvince"
+								onchange="womanProvinceChange()">
+								
+							</select>
+						</div>
+						<div class="col-xs-2">
+
+							<select class="form-control" id="womanCity"
+								onchange="womanCityChange()">
+								
+							</select>
+						</div>
+						<div class="col-xs-2">
+
+							<select class="form-control" id="womanCounty"
+								onchange="womanCountyChange()">
+								
+							</select>
+						</div>
+						<div class="col-xs-2">
+
+							<select class="form-control" id="womanTown">
+								
+							</select>
+						</div>
+						<div class="col-xs-2">
+							<input type="text" id="womanVallige" class="form-control"
+								placeholder="村/社区" onblur="validateValliage()" onfocus="empty3()"/>
+						</div>
+					</div>
+					<div style="position: relative; bottom: 20px;">
+						<div class="form-group">
+							<div class="col-xs-12 control-label" align="right" id="Valliage"
+								style="display: none">
+								<font color="red">输入不能为空！</font>
+							</div>
+							<div class="col-xs-12 control-label" align="right"
+								id="ValliageRight" style="display: none">
+								<font color="red">输入内容太长！</font>
+							</div>
+						</div>
+					</div>
+					<div style="position: relative; bottom: 15px;">
+						<div class="form-group">
+							<div class="col-xs-2 control-label">现居住地:</div>
+							<div class="col-xs-2">
+								<select class="form-control" id="womanCurProvince"
+									onchange="womanCurProvinceChange()">
+									
+								</select>
+							</div>
+							<div class="col-xs-2">
+
+								<select class="form-control" id="womanCurCity"
+									onchange="womanCurCityChange()">
+									
+								</select>
+							</div>
+							<div class="col-xs-2">
+
+								<select class="form-control" id="womanCurCounty"
+									onchange="womanCurCountyChange()">
+									
+
+								</select>
+							</div>
+							<div class="col-xs-2">
+
+								<select class="form-control" id="womanCurTown">
+									
+
+								</select>
+							</div>
+							<div class="col-xs-2">
+								<input type="text" id="womanCurVallige" class="form-control"
+									placeholder="村/社区" onblur="validateNowvalliage()" onfocus="empty4()"/>
+							</div>
+						</div>
+						<div style="position: relative; bottom: 20px;">
+							<div class="form-group">
+								<div class="col-xs-12 control-label" align="right"
+									id="nowValliage" style="display: none">
+									<font color="red">输入不能为空！</font>
+								</div>
+								<div class="col-xs-12 control-label" align="right"
+									id="nowValliageRight" style="display: none">
+									<font color="red">输入内容太长！</font>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="position: relative; bottom: 25px;">
+						
+						<div class="form-group">
+							<div class="col-xs-2 control-label">检查年度:</div>
+							<div class="col-xs-4">
+								<select class="form-control" id="checkYear">
+									<option>2030</option>
+									<option>2029</option>
+									<option>2028</option>
+									<option>2027</option>
+									<option>2026</option>
+									<option>2025</option>
+									<option>2024</option>
+									<option>2023</option>
+									<option>2022</option>
+									<option>2021</option>
+									<option>2020</option>
+									<option>2019</option>
+									<option>2018</option>
+									<option>2017</option>
+									<option>2016</option>
+									<option>2015</option>
+									<option selected="selected">2014</option>
+									<option>2013</option>
+									<option>2012</option>
+									<option>2011</option>
+									<option>2010</option>
+									<option>2009</option>
+									<option>2008</option>
+									<option>2007</option>
+									<option>2006</option>
+									<option>2005</option>
+								
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2 control-label">检查批次:</div>
+							<div class="col-xs-4">
+								<!-- <input type="text" id="checkPatch" class="form-control"/> -->
+
+								<select class="form-control" id="checkPatch">
+									<option>第一批次</option>
+									<option>第二批次</option>
+									<option>第三批次</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2 control-label">检查日期:</div>
+							<div class="col-xs-4">
+								<input id="checkDate" class="Wdate" type="text"
+									style="height: 33px; width: 260px;" onClick="WdatePicker()"
+									onblur="validateDate()" onfocus="empty5()">
+
+							</div>
+							<div style="position: relative; bottom: -5px;">
+								<div class="col-xs-6">
+									<span id="dateIsNull" style="display: none"><font
+										color="red">输入内容不能为空！</font></span> <span id="dateIsRight"
+										style="display: none"><font color="red">选择日期不能大于今天，请输入正确的检查日期！</font></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2 control-label">检查地点:</div>
+							<div class="col-xs-6">
+								<input type="text" id="checkPlace" class="form-control"
+									onblur="validateCheckPlace()" onfocus="empty6()"/>
+							</div>
+							<div style="position: relative; bottom: -5px;">
+								<div class="col-xs-4">
+									<span id="checkPlaceIsNull" style="display: none"><font
+										color="red">输入内容不能为空！</font></span> <span id="checkPlaceIsRight"
+										style="display: none"><font color="red">输入内容过长！</font></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2 control-label">检查情况:</div>
+							<div class="col-xs-2">
+
+								<select class="form-control" id="hoop">
+									<option>有环</option>
+									<option>无环</option>
+									<option>环移位</option>
+								</select>
+							</div>
+							<div class="col-xs-2">
+
+								<select class="form-control" id="pregnant">
+									<option>无孕</option>
+									<option>计内孕</option>
+									<option>计外孕</option>
+								</select>
+							</div>
+							<div class="col-xs-2">
+
+								<select class="form-control" id="disease">
+									<option>无病</option>
+									<option>子宫肌瘤</option>
+									<option>附件囊肿</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2 control-label">检查建议:</div>
+							<div class="col-xs-7">
+								<textarea type="text" id="checkSuggest" class="form-control"
+									style="height: 150px;" onblur="validateCheckSuggest()"></textarea>
+							</div>
+							
+						</div>
+					</div>
+				</form>
+				<div style="position: relative; right: -14px; bottom: 45px;">
+					<div class="col-xs-12" align="right">
+						<button type="button" class="btn btn-primary" id="save" data-toggle="modal"
+							data-target="">
+							<div style="position: relative; bottom: 2px;">
+								<b>添加</b>
+							</div>
+						</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

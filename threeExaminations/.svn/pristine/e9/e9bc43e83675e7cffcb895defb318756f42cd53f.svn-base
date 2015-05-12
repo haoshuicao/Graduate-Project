@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划生育健康优生信息管理系统！请登录！</title>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+
+<script type="text/javascript" src="../js/login.js"></script>
+<script type="text/javascript" src="../javascript/jquery.cookie.js"></script>
+<script type="text/javascript" src="../javascript/md5.js"></script>
+<script type="text/javascript" defer>
+        history.go(1); 
+    </script>
+<style type="text/css">
+input.middle {
+	vertical-align: middle;
+}
+
+label {
+	vertical-align: middle;
+}
+
+.code {
+ 	background-image:url(../images/code.jpg);
+	font-family: Arial;
+	font-style: italic;
+	font-size: 16px;
+	color: #dd00dd;
+	border: 0;
+	padding: 2px 3px;
+	letter-spacing: 3px;
+	font-weight: bolder;
+}
+
+.unchanged {
+	border: 0;
+}
+</style>
+
+</head>
+ <!-- onkeydown="keyLogin();" -->
+<body onload="createCode()" onkeydown="keyLogin();">
+	<div id="Layer" style="position:absolute; width:100%; height:100%; z-index:-1">    
+		<img src="../images/home.jpg" height="100%" width="100%"/>  
+	</div>
+	<table style="position:absolute;top:33%;left:61%">
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+					<input style="width:265px;height:40px;" type="text" class="form-control" id="username" placeholder="用户名">
+				</div>
+				<div style="height:20px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+					<input style="width:265px;height:40px" type="password" class="form-control" id="password" placeholder="密码">
+				</div>
+				
+				<div style="height:15px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span></span>
+					<input style="width:84px;height:45px;" type="text" class="form-control" id="identyCode" name="identyCode" placeholder="验证码">&nbsp;
+					<input type="text" onselectstart="return false" oncopy="return false" onpaste="return false" readonly="readonly" id="checkCode" onclick="createCode()" class="code" style="width: 66px;height:40px;background-color: #CDB5CD;" />
+					&nbsp;<a href="#" onclick="createCode()" ><b><u>看不清，换一张</u></b></a>
+				</div>
+				<div style="height:15px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div>
+					<div style="float:left;font-size:15;"><input id="rmbUser" type="checkbox"><label style="font-weight:400" for="checkbox">&nbsp;&nbsp;记住密码</label></div>
+					<div style="text-align:right"><a href="../html/ResetPwd.html" style="font-size:15;"><b><u>忘记密码?</u></b></a></div>
+					<div style="height:15px"></div>
+				</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div>
+					<button id="login" style="width:300px;height:40px;background-color:#3162BB;" type="button" class="btn btn-primary btn-lg" onclick="Save();">登&nbsp;&nbsp;录</button>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.ThreeCheckCountMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    <id column="thcc_id" property="thccId" jdbcType="INTEGER" />
+    <result column="thcc_year" property="thccYear" jdbcType="VARCHAR" />
+    <result column="thcc_batch" property="thccBatch" jdbcType="VARCHAR" />
+    <result column="thcc_liveState" property="thccLivestate" jdbcType="VARCHAR" />
+    <result column="thcc_shouldCheckNumber" property="thccShouldchecknumber" jdbcType="INTEGER" />
+    <result column="thcc_haveCheckNumber" property="thccHavechecknumber" jdbcType="INTEGER" />
+    <result column="thcc_checkFreeNumber" property="thccCheckfreenumber" jdbcType="INTEGER" />
+    <result column="thcc_haveHoopNumber" property="thccHavehoopnumber" jdbcType="INTEGER" />
+    <result column="thcc_outPlanPreNumber" property="thccOutplanprenumber" jdbcType="INTEGER" />
+    <result column="thcc_remedyNumber" property="thccRemedynumber" jdbcType="INTEGER" />
+    <result column="thcc_gyMorNumber" property="thccGymornumber" jdbcType="INTEGER" />
+    <result column="thcc_village" property="thccVillage" jdbcType="VARCHAR" />
+    <result column="thcc_parentAreaId" property="thccParentAreaId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    thcc_id, thcc_year, thcc_batch, thcc_liveState, thcc_shouldCheckNumber, thcc_haveCheckNumber, 
+    thcc_checkFreeNumber, thcc_haveHoopNumber, thcc_outPlanPreNumber, thcc_remedyNumber, 
+    thcc_gyMorNumber, thcc_village,thcc_parentAreaId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from threecheckcount
+    where thcc_id = #{thccId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from threecheckcount
+    where thcc_id = #{thccId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    insert into threecheckcount (thcc_id, thcc_year, thcc_batch, 
+      thcc_liveState, thcc_shouldCheckNumber, thcc_haveCheckNumber, 
+      thcc_checkFreeNumber, thcc_haveHoopNumber, 
+      thcc_outPlanPreNumber, thcc_remedyNumber, 
+      thcc_gyMorNumber, thcc_village,thcc_parentAreaId)
+    values (#{thccId,jdbcType=INTEGER}, #{thccYear,jdbcType=VARCHAR}, #{thccBatch,jdbcType=VARCHAR}, 
+      #{thccLivestate,jdbcType=VARCHAR}, #{thccShouldchecknumber,jdbcType=INTEGER}, #{thccHavechecknumber,jdbcType=INTEGER}, 
+      #{thccCheckfreenumber,jdbcType=INTEGER}, #{thccHavehoopnumber,jdbcType=INTEGER}, 
+      #{thccOutplanprenumber,jdbcType=INTEGER}, #{thccRemedynumber,jdbcType=INTEGER}, 
+      #{thccGymornumber,jdbcType=INTEGER}, #{thccVillage,jdbcType=VARCHAR},#{thccParentAreaId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    insert into threecheckcount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="thccId != null" >
+        thcc_id,
+      </if>
+      <if test="thccYear != null" >
+        thcc_year,
+      </if>
+      <if test="thccBatch != null" >
+        thcc_batch,
+      </if>
+      <if test="thccLivestate != null" >
+        thcc_liveState,
+      </if>
+      <if test="thccShouldchecknumber != null" >
+        thcc_shouldCheckNumber,
+      </if>
+      <if test="thccHavechecknumber != null" >
+        thcc_haveCheckNumber,
+      </if>
+      <if test="thccCheckfreenumber != null" >
+        thcc_checkFreeNumber,
+      </if>
+      <if test="thccHavehoopnumber != null" >
+        thcc_haveHoopNumber,
+      </if>
+      <if test="thccOutplanprenumber != null" >
+        thcc_outPlanPreNumber,
+      </if>
+      <if test="thccRemedynumber != null" >
+        thcc_remedyNumber,
+      </if>
+      <if test="thccGymornumber != null" >
+        thcc_gyMorNumber,
+      </if>
+      <if test="thccVillage != null" >
+        thcc_village,
+      </if>
+       <if test="thccParentAreaId != null" >
+        thcc_parentAreaId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="thccId != null" >
+        #{thccId,jdbcType=INTEGER},
+      </if>
+      <if test="thccYear != null" >
+        #{thccYear,jdbcType=VARCHAR},
+      </if>
+      <if test="thccBatch != null" >
+        #{thccBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="thccLivestate != null" >
+        #{thccLivestate,jdbcType=VARCHAR},
+      </if>
+      <if test="thccShouldchecknumber != null" >
+        #{thccShouldchecknumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccHavechecknumber != null" >
+        #{thccHavechecknumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccCheckfreenumber != null" >
+        #{thccCheckfreenumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccHavehoopnumber != null" >
+        #{thccHavehoopnumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccOutplanprenumber != null" >
+        #{thccOutplanprenumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccRemedynumber != null" >
+        #{thccRemedynumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccGymornumber != null" >
+        #{thccGymornumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccVillage != null" >
+        #{thccVillage,jdbcType=VARCHAR},
+      </if>
+       <if test="thccParentAreaId != null" >
+        #{thccParentAreaId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    update threecheckcount
+    <set >
+      <if test="thccYear != null" >
+        thcc_year = #{thccYear,jdbcType=VARCHAR},
+      </if>
+      <if test="thccBatch != null" >
+        thcc_batch = #{thccBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="thccLivestate != null" >
+        thcc_liveState = #{thccLivestate,jdbcType=VARCHAR},
+      </if>
+      <if test="thccShouldchecknumber != null" >
+        thcc_shouldCheckNumber = #{thccShouldchecknumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccHavechecknumber != null" >
+        thcc_haveCheckNumber = #{thccHavechecknumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccCheckfreenumber != null" >
+        thcc_checkFreeNumber = #{thccCheckfreenumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccHavehoopnumber != null" >
+        thcc_haveHoopNumber = #{thccHavehoopnumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccOutplanprenumber != null" >
+        thcc_outPlanPreNumber = #{thccOutplanprenumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccRemedynumber != null" >
+        thcc_remedyNumber = #{thccRemedynumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccGymornumber != null" >
+        thcc_gyMorNumber = #{thccGymornumber,jdbcType=INTEGER},
+      </if>
+      <if test="thccVillage != null" >
+        thcc_village = #{thccVillage,jdbcType=VARCHAR},
+      </if>
+       <if test="thccParentAreaId != null" >
+        thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where thcc_id = #{thccId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateInfo" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    update threecheckcount
+    set thcc_shouldCheckNumber = #{thccShouldchecknumber,jdbcType=INTEGER},
+      thcc_haveCheckNumber = #{thccHavechecknumber,jdbcType=INTEGER},
+      thcc_checkFreeNumber = #{thccCheckfreenumber,jdbcType=INTEGER},
+      thcc_haveHoopNumber = #{thccHavehoopnumber,jdbcType=INTEGER},
+      thcc_outPlanPreNumber = #{thccOutplanprenumber,jdbcType=INTEGER},
+      thcc_remedyNumber = #{thccRemedynumber,jdbcType=INTEGER},
+      thcc_gyMorNumber = #{thccGymornumber,jdbcType=INTEGER}
+    where thcc_year = #{thccYear,jdbcType=VARCHAR} and thcc_batch = #{thccBatch,jdbcType=VARCHAR} and thcc_liveState = #{thccLivestate,jdbcType=VARCHAR}
+    and thcc_village = #{thccVillage,jdbcType=VARCHAR} and thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER}
+  </update>
+  
+   <select id="findRecord" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    select 
+    <include refid="Base_Column_List" />
+    from threecheckcount
+    where thcc_year = #{thccYear,jdbcType=VARCHAR} and thcc_batch = #{thccBatch,jdbcType=VARCHAR} and thcc_liveState = #{thccLivestate,jdbcType=VARCHAR}
+    and thcc_village = #{thccVillage,jdbcType=VARCHAR} and thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    update threecheckcount
+    set thcc_year = #{thccYear,jdbcType=VARCHAR},
+      thcc_batch = #{thccBatch,jdbcType=VARCHAR},
+      thcc_liveState = #{thccLivestate,jdbcType=VARCHAR},
+      thcc_shouldCheckNumber = #{thccShouldchecknumber,jdbcType=INTEGER},
+      thcc_haveCheckNumber = #{thccHavechecknumber,jdbcType=INTEGER},
+      thcc_checkFreeNumber = #{thccCheckfreenumber,jdbcType=INTEGER},
+      thcc_haveHoopNumber = #{thccHavehoopnumber,jdbcType=INTEGER},
+      thcc_outPlanPreNumber = #{thccOutplanprenumber,jdbcType=INTEGER},
+      thcc_remedyNumber = #{thccRemedynumber,jdbcType=INTEGER},
+      thcc_gyMorNumber = #{thccGymornumber,jdbcType=INTEGER},
+      thcc_village = #{thccVillage,jdbcType=VARCHAR},
+      thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER}
+    where thcc_id = #{thccId,jdbcType=INTEGER}
+  </update>
+  <!-- 自己写的方法 -->
+   <select id="searchBySelect1" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    select thcc_year,thcc_batch,sum(thcc_shouldCheckNumber) thcc_shouldCheckNumber,
+    sum(thcc_haveCheckNumber) thcc_haveCheckNumber,sum(thcc_checkFreeNumber) thcc_checkFreeNumber,sum(thcc_haveHoopNumber) thcc_haveHoopNumber,
+    sum(thcc_outPlanPreNumber) thcc_outPlanPreNumber,sum(thcc_remedyNumber) thcc_remedyNumber,sum(thcc_gyMorNumber) thcc_gyMorNumber,thcc_village,thcc_parentAreaId
+    from threecheckcount
+    where thcc_year = #{thccYear,jdbcType=VARCHAR} and
+      thcc_batch = #{thccBatch,jdbcType=VARCHAR} and thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER}
+     group by thcc_village 
+  </select>
+  
+   <select id="searchBySelect2" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    select thcc_year,thcc_batch,sum(thcc_shouldCheckNumber) thcc_shouldCheckNumber,
+    sum(thcc_haveCheckNumber) thcc_haveCheckNumber,sum(thcc_checkFreeNumber) thcc_checkFreeNumber,sum(thcc_haveHoopNumber) thcc_haveHoopNumber,
+    sum(thcc_outPlanPreNumber) thcc_outPlanPreNumber,sum(thcc_remedyNumber) thcc_remedyNumber,sum(thcc_gyMorNumber) thcc_gyMorNumber,thcc_village,thcc_parentAreaId
+    from threecheckcount
+    where thcc_year = #{thccYear,jdbcType=VARCHAR} and 
+      thcc_batch = #{thccBatch,jdbcType=VARCHAR} and thcc_village = #{thccVillage,jdbcType=VARCHAR} and thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER}
+      group by thcc_village
+  </select>
+  
+  <select id="searchBySelect3" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    select 
+    <include refid="Base_Column_List" />
+    from threecheckcount
+    where thcc_year = #{thccYear,jdbcType=VARCHAR} and
+      thcc_batch = #{thccBatch,jdbcType=VARCHAR} and thcc_liveState = #{thccLivestate,jdbcType=VARCHAR} and thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="searchBySelect4" resultMap="BaseResultMap" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckCount" >
+    select 
+    <include refid="Base_Column_List" />
+    from threecheckcount
+    where thcc_year = #{thccYear,jdbcType=VARCHAR} and
+      thcc_batch = #{thccBatch,jdbcType=VARCHAR} and thcc_village = #{thccVillage,jdbcType=VARCHAR} and thcc_liveState = #{thccLivestate,jdbcType=VARCHAR} and thcc_parentAreaId = #{thccParentAreaId,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

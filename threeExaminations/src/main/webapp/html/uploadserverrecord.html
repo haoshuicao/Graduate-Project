@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划生育健康优生信息管理系统</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../javascript/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../js/uploadserverrecord.js"></script>
+
+<style type="text/css">
+label {
+	font-size: 5%;
+}
+body {
+	font-size: 14px;
+}
+
+input {
+	vertical-align: middle;
+	margin: 0;
+	padding: 0
+}
+
+.file-box {
+	position: relative;
+	width: 450px
+}
+
+.txt {
+	height: 30px;
+	border: 1px solid #cdcdcd;
+	width: 250px;
+}
+
+.btn {
+	background-color: #FFF;
+	border: 1px solid #CDCDCD;
+	height: 30px;
+	width: 70px;
+}
+
+.file {
+	position: absolute;
+	top: 0;
+	right: 90px;
+	height: 30px;
+	filter: alpha(opacity : 0);
+	opacity: 0;
+	width: 270px
+}
+.bgBar{  
+  
+                background: #FFFFFF;  
+  
+                font-family: Arial,Verdana;  
+  
+                border: 1px solid #000000;  
+  
+                text-align: left;  
+  
+                font-size: 17;  
+  
+                font-weight: bold;  
+  
+            }  
+  
+            .bgBar div{  
+  
+                background: #DAECC8;  
+  
+                border: 1px solid #FFFFFF;  
+  
+                color:  #308040;  
+  
+                text-align: right;  
+  
+                overflow: hidden;  
+  
+            } 
+
+</style>
+</head>
+<body style="background-color: #F2F2F2">
+	<div class="container">
+		<img src="../images/titleJPG2.jpg" border="2" vspace="4" width="100%"
+			height="100%" align="bottom" />
+
+		<div class="row">
+			<div class="col-xs-3 ">
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; width: 100%; text-align: center">
+					<font size=3><b>登录信息</b></font>
+				</div>
+				<!-- <div class="table-responsive"> -->
+				<table class="table">
+					<tr>
+						<td style="width:58px;">单位：</td>
+						<td id="unit" colspan="2"></td>
+					</tr>
+					<tr>
+						<td >用户：</td>
+						<td id="username"></td>
+						<td align="right">
+						<div style="position: relative; right: -7px;">
+						
+						<button id="logout" type="button" class="btn btn-primary" style="height:26px;width:38px;">
+								<div style="position: relative; bottom: 4px;right:8px;" align="center">
+									<b>注销</b>
+								</div>
+						</button>
+						</div>
+							</td>
+					</tr>
+				</table>
+				<div style="position: relative; bottom: 20px;">
+					<div class="form-control"
+						style="background-color: #3162BB; color: #FFFFFF; text-align: center">
+						<font  size=3><b>业务类型</b></font>
+					</div>
+					<b><ul id="authList" class="nav nav-pills nav-stacked" style="text-align: center">		
+					</ul></b>
+				</div>
+			</div>
+
+			<div class="col-xs-9">
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; text-align: left">
+					<font size=3><b>上传服务记录</b></font>
+				</div>
+				<br />
+				<form class="form-horizontal">
+					<div class="form-group">
+					<div style="position: relative; bottom: -8px;">
+						<div class="col-xs-2 control-label">选择上传文件:</div>
+						</div>
+						<div class="col-xs-4 control-label">
+							<div class="file-box">
+								<form action="" method="post" enctype="multipart/form-data">
+									<span id="span1"><input type='text' name='textfield' id='textfield' class='txt' /></span>
+									&nbsp;&nbsp;
+									<button type="button" class="btn btn-primary">
+										<b>浏览</b>
+									</button>
+									<span id="span2"><input
+										type="file" name="postfile" class="file" id="postfile"
+										size="28"
+										onchange="document.getElementById('textfield').value=this.value.slice(12)" /></span>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<button id="upload_file" type="button" class="btn btn-primary">
+										<b>上传</b>
+									</button>
+									
+								</form>
+							</div>
+							
+						</div>
+						<br/><br/>
+						<div class="col-xs-12 control-label">
+							<hr/>
+						</div>
+						<div class="col-xs-12 control-label">
+						<div class="alert alert-danger" id="tip1" align="left" style="display: none"><b>Tip:没有选择任何文件！</b></div>
+						<div class="alert alert-danger" id="tip2" align="left" style="display: none"><b>Tip:请上传后缀名为.xls和.xlsx的文件！</b></div>
+						<div class="alert alert-danger" id="tip3" align="left" style="display: none"><b>Tip:上传文件内容无效，请重新选择！</b></div>
+						</div>
+						
+					</div>
+
+				</form>
+				<div class="alert alert-info" style="display:none;" id="loadTip">
+					<b>文件正在进行上传，请稍等......</b>
+				</div>
+				
+				<div class="modal fade" id="myModal" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h5 class="modal-title" id="myModalLabel"><font face="微软雅黑" size=3><b>请再次输入用户信息确认</b></font></h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>用户名：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Username" style="width:180px;">
+										</div>
+									</div>
+									<br />
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>密&nbsp;&nbsp;&nbsp;&nbsp;码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control"
+												id="exampleInputPassword2" placeholder="Password" style="width:180px;">
+										</div>
+									</div>
+									<br/>
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<font face="微软雅黑" size=2><b>验证码：</b></font>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Checkcode" style="width:180px;">
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">
+									<div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>确定</b> </font>
+									</div>
+								</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal"><div style="position: relative; bottom: 2px;">
+										<font face="微软雅黑" size=2><b>取消</b></font>
+									</div></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br />
+				<div class="col-xs-12 " align="right">
+						<table class="table table-condensed" id="showRecord">
+						</table>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

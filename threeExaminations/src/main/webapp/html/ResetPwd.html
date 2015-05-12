@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划生育健康优生信息管理系统</title>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+<script type="text/javascript" src="../js/ResetPwd.js"></script>
+<style type="text/css">
+.code  
+        {  
+            background-image:url(../images/111.jpg);  
+            font-family:Arial;  
+            font-style:italic;  
+            font-size:16px;
+            color:#dd00dd;  
+            border:0;  
+            padding:2px 3px;  
+            letter-spacing:3px;  
+            font-weight:bolder;  
+        }  
+        .unchanged  
+        {  
+            border:0;  
+        }  
+
+</style>
+</head>
+<body onload="createCode()">
+	<nav class="navbar navbar-info navbar-static-top" style="background-color:rgb(52,118,176);">
+		<h3>
+			&nbsp;&nbsp;&nbsp;<font color="white">找回密码</font>
+		</h3>
+	</nav>
+	<br />
+	<br />
+	<div style="position: absolute; left: 480px;">
+	<h3><b>请输入您的注册用户名和电子邮箱</b></h3>
+	</div>
+	<table style="position: absolute; top: 33%; left: 38%">
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon-user"></span></span> <input
+						style="width: 261px; height: 40px" type="text"
+						class="form-control" id="username" placeholder="用户名">
+				</div>
+				<div style="height: 20px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon-envelope"></span></span> <input
+						style="width: 261px; height: 40px" type="text"
+						class="form-control" id="email" placeholder="邮箱">
+				</div>
+				<div style="height: 15px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon-qrcode"></span></span> <input
+						style="width: 100px; height: 43px;" type="text"
+						class="form-control" id="identyCode" name="identyCode" placeholder="验证码">&nbsp;&nbsp;
+					<input type="text" onselectstart="return false" oncopy="return false" onpaste="return false" readonly="readonly" 
+						id="checkCode" class="unchanged" onclick="createCode()" style="width: 70px; height: 40px; background-color: #CDB5CD;" />
+						&nbsp;&nbsp;<a href="#" onclick="createCode()" ><b><u>看不清，换一张</u></b></a>
+				</div>
+				<div style="height: 15px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div class="input-group">
+				<span>
+					<button id="findPwd"
+						style="width: 150px; height: 40px; background-color: #3162BB;"
+						type="button" class="btn btn-primary btn-lg" onclick="ResetPwd()">确&nbsp;&nbsp;定</button>
+				</span>
+				
+					<button id="returnLogin"
+						style="width: 150px; height: 40px; background-color: #3162BB;"
+						type="button" class="btn btn-primary btn-lg" onclick="Return()">返&nbsp;&nbsp;回</button>
+			</div>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.ThreeCheckServiceMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.ThreeCheckService" >
+    <id column="thcs_id" property="thcsId" jdbcType="INTEGER" />
+    <result column="thcs_idNumber" property="thcsIdnumber" jdbcType="VARCHAR" />
+    <result column="thcs_name" property="thcsName" jdbcType="VARCHAR" />
+    <result column="thcs_householdRegister" property="thcsHouseholdregister" jdbcType="VARCHAR" />
+    <result column="thcs_nowLiveProvince" property="thcsNowliveprovince" jdbcType="VARCHAR" />
+    <result column="thcs_nowLiveCity" property="thcsNowlivecity" jdbcType="VARCHAR" />
+    <result column="thcs_nowLiveCounty" property="thcsNowlivecounty" jdbcType="VARCHAR" />
+    <result column="thcs_nowLiveTown" property="thcsNowlivetown" jdbcType="VARCHAR" />
+    <result column="thcs_nowLiveVillage" property="thcsNowlivevillage" jdbcType="VARCHAR" />
+    <result column="thcs_liveState" property="thcsLivestate" jdbcType="VARCHAR" />
+    <result column="thcs_isExistCheckList" property="thcsIsexistchecklist" jdbcType="INTEGER" />
+    <result column="thcs_checkState" property="thcsCheckstate" jdbcType="VARCHAR" />
+    <result column="thcs_checkTime" property="thcsChecktime" jdbcType="VARCHAR" />
+    <result column="thcs_year" property="thcsYear" jdbcType="VARCHAR" />
+    <result column="thcs_batch" property="thcsBatch" jdbcType="VARCHAR" />
+    <result column="thcs_hoop" property="thcsHoop" jdbcType="VARCHAR" />
+    <result column="thcs_pregnancy" property="thcsPregnancy" jdbcType="VARCHAR" />
+    <result column="thcs_isRemedy" property="thcsIsremedy" jdbcType="INTEGER" />
+    <result column="thcs_cheakPlace" property="thcsCheakplace" jdbcType="VARCHAR" />
+    <result column="thcs_threeCheckServicecol" property="thcsThreecheckservicecol" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" extends="BaseResultMap" >
+    <result column="thcs_noCheckReason" property="thcsNocheckreason" jdbcType="LONGVARCHAR" />
+    <result column="thcs_checkSuggest" property="thcsChecksuggest" jdbcType="LONGVARCHAR" />
+    <result column="thcs_disease" property="thcsDisease" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    thcs_id, thcs_idNumber, thcs_name, thcs_householdRegister, thcs_nowLiveProvince, 
+    thcs_nowLiveCity, thcs_nowLiveCounty, thcs_nowLiveTown, thcs_nowLiveVillage, thcs_liveState, 
+    thcs_isExistCheckList, thcs_checkState, thcs_checkTime, thcs_year, thcs_batch, thcs_hoop, 
+    thcs_pregnancy, thcs_isRemedy, thcs_cheakPlace, thcs_threeCheckServicecol
+  </sql>
+  <sql id="Blob_Column_List" >
+    thcs_noCheckReason, thcs_checkSuggest, thcs_disease
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_id = #{thcsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from threecheckservice
+    where thcs_id = #{thcsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    insert into threecheckservice (thcs_id, thcs_idNumber, thcs_name, 
+      thcs_householdRegister, thcs_nowLiveProvince, 
+      thcs_nowLiveCity, thcs_nowLiveCounty, thcs_nowLiveTown, 
+      thcs_nowLiveVillage, thcs_liveState, thcs_isExistCheckList, 
+      thcs_checkState, thcs_checkTime, thcs_year, 
+      thcs_batch, thcs_hoop, thcs_pregnancy, 
+      thcs_isRemedy, thcs_cheakPlace, thcs_threeCheckServicecol, 
+      thcs_noCheckReason, thcs_checkSuggest, 
+      thcs_disease)
+    values (#{thcsId,jdbcType=INTEGER}, #{thcsIdnumber,jdbcType=VARCHAR}, #{thcsName,jdbcType=VARCHAR}, 
+      #{thcsHouseholdregister,jdbcType=VARCHAR}, #{thcsNowliveprovince,jdbcType=VARCHAR}, 
+      #{thcsNowlivecity,jdbcType=VARCHAR}, #{thcsNowlivecounty,jdbcType=VARCHAR}, #{thcsNowlivetown,jdbcType=VARCHAR}, 
+      #{thcsNowlivevillage,jdbcType=VARCHAR}, #{thcsLivestate,jdbcType=VARCHAR}, #{thcsIsexistchecklist,jdbcType=INTEGER}, 
+      #{thcsCheckstate,jdbcType=VARCHAR}, #{thcsChecktime,jdbcType=VARCHAR}, #{thcsYear,jdbcType=VARCHAR}, 
+      #{thcsBatch,jdbcType=VARCHAR}, #{thcsHoop,jdbcType=VARCHAR}, #{thcsPregnancy,jdbcType=VARCHAR}, 
+      #{thcsIsremedy,jdbcType=INTEGER}, #{thcsCheakplace,jdbcType=VARCHAR}, #{thcsThreecheckservicecol,jdbcType=VARCHAR}, 
+      #{thcsNocheckreason,jdbcType=LONGVARCHAR}, #{thcsChecksuggest,jdbcType=LONGVARCHAR}, 
+      #{thcsDisease,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    insert into threecheckservice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="thcsId != null" >
+        thcs_id,
+      </if>
+      <if test="thcsIdnumber != null" >
+        thcs_idNumber,
+      </if>
+      <if test="thcsName != null" >
+        thcs_name,
+      </if>
+      <if test="thcsHouseholdregister != null" >
+        thcs_householdRegister,
+      </if>
+      <if test="thcsNowliveprovince != null" >
+        thcs_nowLiveProvince,
+      </if>
+      <if test="thcsNowlivecity != null" >
+        thcs_nowLiveCity,
+      </if>
+      <if test="thcsNowlivecounty != null" >
+        thcs_nowLiveCounty,
+      </if>
+      <if test="thcsNowlivetown != null" >
+        thcs_nowLiveTown,
+      </if>
+      <if test="thcsNowlivevillage != null" >
+        thcs_nowLiveVillage,
+      </if>
+      <if test="thcsLivestate != null" >
+        thcs_liveState,
+      </if>
+      <if test="thcsIsexistchecklist != null" >
+        thcs_isExistCheckList,
+      </if>
+      <if test="thcsCheckstate != null" >
+        thcs_checkState,
+      </if>
+      <if test="thcsChecktime != null" >
+        thcs_checkTime,
+      </if>
+      <if test="thcsYear != null" >
+        thcs_year,
+      </if>
+      <if test="thcsBatch != null" >
+        thcs_batch,
+      </if>
+      <if test="thcsHoop != null" >
+        thcs_hoop,
+      </if>
+      <if test="thcsPregnancy != null" >
+        thcs_pregnancy,
+      </if>
+      <if test="thcsIsremedy != null" >
+        thcs_isRemedy,
+      </if>
+      <if test="thcsCheakplace != null" >
+        thcs_cheakPlace,
+      </if>
+      <if test="thcsThreecheckservicecol != null" >
+        thcs_threeCheckServicecol,
+      </if>
+      <if test="thcsNocheckreason != null" >
+        thcs_noCheckReason,
+      </if>
+      <if test="thcsChecksuggest != null" >
+        thcs_checkSuggest,
+      </if>
+      <if test="thcsDisease != null" >
+        thcs_disease,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="thcsId != null" >
+        #{thcsId,jdbcType=INTEGER},
+      </if>
+      <if test="thcsIdnumber != null" >
+        #{thcsIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsName != null" >
+        #{thcsName,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsHouseholdregister != null" >
+        #{thcsHouseholdregister,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowliveprovince != null" >
+        #{thcsNowliveprovince,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivecity != null" >
+        #{thcsNowlivecity,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivecounty != null" >
+        #{thcsNowlivecounty,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivetown != null" >
+        #{thcsNowlivetown,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivevillage != null" >
+        #{thcsNowlivevillage,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsLivestate != null" >
+        #{thcsLivestate,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsIsexistchecklist != null" >
+        #{thcsIsexistchecklist,jdbcType=INTEGER},
+      </if>
+      <if test="thcsCheckstate != null" >
+        #{thcsCheckstate,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsChecktime != null" >
+        #{thcsChecktime,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsYear != null" >
+        #{thcsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsBatch != null" >
+        #{thcsBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsHoop != null" >
+        #{thcsHoop,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsPregnancy != null" >
+        #{thcsPregnancy,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsIsremedy != null" >
+        #{thcsIsremedy,jdbcType=INTEGER},
+      </if>
+      <if test="thcsCheakplace != null" >
+        #{thcsCheakplace,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsThreecheckservicecol != null" >
+        #{thcsThreecheckservicecol,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNocheckreason != null" >
+        #{thcsNocheckreason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thcsChecksuggest != null" >
+        #{thcsChecksuggest,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thcsDisease != null" >
+        #{thcsDisease,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    update threecheckservice
+    <set >
+      <if test="thcsIdnumber != null" >
+        thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsName != null" >
+        thcs_name = #{thcsName,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsHouseholdregister != null" >
+        thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowliveprovince != null" >
+        thcs_nowLiveProvince = #{thcsNowliveprovince,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivecity != null" >
+        thcs_nowLiveCity = #{thcsNowlivecity,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivecounty != null" >
+        thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivetown != null" >
+        thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNowlivevillage != null" >
+        thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsLivestate != null" >
+        thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsIsexistchecklist != null" >
+        thcs_isExistCheckList = #{thcsIsexistchecklist,jdbcType=INTEGER},
+      </if>
+      <if test="thcsCheckstate != null" >
+        thcs_checkState = #{thcsCheckstate,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsChecktime != null" >
+        thcs_checkTime = #{thcsChecktime,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsYear != null" >
+        thcs_year = #{thcsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsBatch != null" >
+        thcs_batch = #{thcsBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsHoop != null" >
+        thcs_hoop = #{thcsHoop,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsPregnancy != null" >
+        thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsIsremedy != null" >
+        thcs_isRemedy = #{thcsIsremedy,jdbcType=INTEGER},
+      </if>
+      <if test="thcsCheakplace != null" >
+        thcs_cheakPlace = #{thcsCheakplace,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsThreecheckservicecol != null" >
+        thcs_threeCheckServicecol = #{thcsThreecheckservicecol,jdbcType=VARCHAR},
+      </if>
+      <if test="thcsNocheckreason != null" >
+        thcs_noCheckReason = #{thcsNocheckreason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thcsChecksuggest != null" >
+        thcs_checkSuggest = #{thcsChecksuggest,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thcsDisease != null" >
+        thcs_disease = #{thcsDisease,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where thcs_id = #{thcsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    update threecheckservice
+    set thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR},
+      thcs_name = #{thcsName,jdbcType=VARCHAR},
+      thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR},
+      thcs_nowLiveProvince = #{thcsNowliveprovince,jdbcType=VARCHAR},
+      thcs_nowLiveCity = #{thcsNowlivecity,jdbcType=VARCHAR},
+      thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR},
+      thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR},
+      thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR},
+      thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR},
+      thcs_isExistCheckList = #{thcsIsexistchecklist,jdbcType=INTEGER},
+      thcs_checkState = #{thcsCheckstate,jdbcType=VARCHAR},
+      thcs_checkTime = #{thcsChecktime,jdbcType=VARCHAR},
+      thcs_year = #{thcsYear,jdbcType=VARCHAR},
+      thcs_batch = #{thcsBatch,jdbcType=VARCHAR},
+      thcs_hoop = #{thcsHoop,jdbcType=VARCHAR},
+      thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR},
+      thcs_isRemedy = #{thcsIsremedy,jdbcType=INTEGER},
+      thcs_cheakPlace = #{thcsCheakplace,jdbcType=VARCHAR},
+      thcs_threeCheckServicecol = #{thcsThreecheckservicecol,jdbcType=VARCHAR},
+      thcs_noCheckReason = #{thcsNocheckreason,jdbcType=LONGVARCHAR},
+      thcs_checkSuggest = #{thcsChecksuggest,jdbcType=LONGVARCHAR},
+      thcs_disease = #{thcsDisease,jdbcType=LONGVARCHAR}
+    where thcs_id = #{thcsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckService" >
+    update threecheckservice
+    set thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR},
+      thcs_name = #{thcsName,jdbcType=VARCHAR},
+      thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR},
+      thcs_nowLiveProvince = #{thcsNowliveprovince,jdbcType=VARCHAR},
+      thcs_nowLiveCity = #{thcsNowlivecity,jdbcType=VARCHAR},
+      thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR},
+      thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR},
+      thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR},
+      thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR},
+      thcs_isExistCheckList = #{thcsIsexistchecklist,jdbcType=INTEGER},
+      thcs_checkState = #{thcsCheckstate,jdbcType=VARCHAR},
+      thcs_checkTime = #{thcsChecktime,jdbcType=VARCHAR},
+      thcs_year = #{thcsYear,jdbcType=VARCHAR},
+      thcs_batch = #{thcsBatch,jdbcType=VARCHAR},
+      thcs_hoop = #{thcsHoop,jdbcType=VARCHAR},
+      thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR},
+      thcs_isRemedy = #{thcsIsremedy,jdbcType=INTEGER},
+      thcs_cheakPlace = #{thcsCheakplace,jdbcType=VARCHAR},
+      thcs_threeCheckServicecol = #{thcsThreecheckservicecol,jdbcType=VARCHAR}
+    where thcs_id = #{thcsId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="searchByTownName" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    from threecheckservice
+    where thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR}
+  </select>
+  
+   <update id="update" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckService" >
+    update threecheckservice
+    set thcs_name = #{thcsName,jdbcType=VARCHAR},
+      thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR},
+      thcs_nowLiveProvince = #{thcsNowliveprovince,jdbcType=VARCHAR},
+      thcs_nowLiveCity = #{thcsNowlivecity,jdbcType=VARCHAR},
+      thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR},
+      thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR},
+      thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR},
+      thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR},
+      thcs_isExistCheckList = #{thcsIsexistchecklist,jdbcType=INTEGER},
+      thcs_checkState = #{thcsCheckstate,jdbcType=VARCHAR},
+      thcs_checkTime = #{thcsChecktime,jdbcType=VARCHAR},
+      thcs_year = #{thcsYear,jdbcType=VARCHAR},
+      thcs_batch = #{thcsBatch,jdbcType=VARCHAR},
+      thcs_hoop = #{thcsHoop,jdbcType=VARCHAR},
+      thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR},
+      thcs_isRemedy = #{thcsIsremedy,jdbcType=INTEGER},
+      thcs_cheakPlace = #{thcsCheakplace,jdbcType=VARCHAR},
+      thcs_threeCheckServicecol = #{thcsThreecheckservicecol,jdbcType=VARCHAR}
+    where thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR}
+  </update>
+ 
+  <select id="selectByTown" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs">
+  	select distinct thcs_nowLiveVillage
+  	from threecheckservice 
+  	where thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR}
+  	and (thcs_liveState =#{changzhu,jdbcType=VARCHAR} or thcs_liveState =#{liuru,jdbcType=VARCHAR})
+  </select>
+  <select id="selectHuJiByUserArea" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs">
+  	select distinct thcs_householdRegister
+  	from threecheckservice 
+  	where  thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  </select>
+   <select id="findIdList" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs">
+  	select *
+  	from threecheckservice
+  	where thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR}
+  	and thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+  	and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	and  thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR}
+  	Order By thcs_checkTime desc
+  </select>
+   <select id="findRepeat" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs">
+  	select *
+  	from threecheckservice where thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR}
+  	and  thcs_year = #{thcsYear,jdbcType=VARCHAR} and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+  	and thcs_hoop = #{thcsHoop,jdbcType=VARCHAR}
+  	and thcs_disease = #{thcsDisease,jdbcType=LONGVARCHAR}
+  </select>
+  <select id="findRepeat2" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs">
+  	select *
+  	from threecheckservice where thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR}
+  	and  thcs_year = #{thcsYear,jdbcType=VARCHAR} and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  </select>
+   <select id="findRecordByIdCard" resultMap="ResultMapWithBLOBs" >
+  	select * 
+    from threecheckservice 
+    where thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR} 
+    and (((thcs_liveState = #{changzhu,jdbcType=VARCHAR} or thcs_liveState = #{liuru,jdbcType=VARCHAR}) and thcs_nowLiveTown = #{nowLiveTown,jdbcType=VARCHAR})
+  	or (thcs_liveState = #{liuchu,jdbcType=VARCHAR} and thcs_householdRegister like #{huji,jdbcType=VARCHAR})) 	
+  	order by thcs_checkTime
+  </select>
+  <select id="findRecordByIdCard2" resultMap="ResultMapWithBLOBs">
+  	select * 
+    from threecheckservice 
+    where thcs_idNumber = #{thcsIdnumber,jdbcType=VARCHAR} 
+    and (((thcs_liveState = #{changzhu,jdbcType=VARCHAR} 
+    or thcs_liveState = #{liuru,jdbcType=VARCHAR}) 
+    and thcs_nowLiveCounty = #{nowLiveCounty,jdbcType=VARCHAR})
+  	or (thcs_liveState = #{liuchu,jdbcType=VARCHAR} and thcs_householdRegister like #{huji,jdbcType=VARCHAR})) 	
+  	order by thcs_checkTime
+  </select>
+   <select id="findRecordBySelect1" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} 
+    and thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR}
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut5" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} 
+    and thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR}
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut55" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} 
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelect11" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} 
+    and thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR}
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+ 	Order By thcs_checkTime
+  </select>
+  
+  <select id="findRecordBySelect2" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} 
+    and  thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR}
+ 	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+ 	Order By thcs_checkTime
+  </select>
+   <select id="findRecordBySelectOut6" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR}
+ 	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+ 	Order By thcs_checkTime
+  </select>
+   <select id="findRecordBySelectOut66" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+ 	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+ 	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelect22" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} 
+    and  thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR}
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+   <select id="findRecordBySelect3" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR}
+	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut7" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut77" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+	Order By thcs_checkTime
+  </select>
+   <select id="findRecordBySelect33" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR}
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+   <select id="findRecordBySelect4" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+  <select id="findRecordBySelectOut2" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut22" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+   <select id="findRecordBySelect44" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+   <select id="findRecordBySelect5" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} and  thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} and 
+    thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut3" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut33" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+   <select id="findRecordBySelect55" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} and thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR} and  thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} and 
+    thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+ 	Order By thcs_checkTime
+  </select>
+  
+   <select id="findRecordBySelect6" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} and  thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} and 
+    thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} and thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut4" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR}  
+    and  thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} 
+    and thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut44" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR}  
+    and  thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} 
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR} 
+  	Order By thcs_checkTime
+  </select>
+   <select id="findRecordBySelect66" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where  thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} and  thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR} and 
+    thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR} and thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+  <select id="findRecordBySelect7" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR}
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut8" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut88" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelect77" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR} 
+    and thcs_pregnancy = #{thcsPregnancy,jdbcType=VARCHAR}
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+   <select id="findRecordBySelect8" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR} 
+    and thcs_nowLiveVillage = #{thcsNowlivevillage,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+  <select id="findRecordBySelectOut1" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    and thcs_householdRegister = #{thcsHouseholdregister,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  <select id="findRecordBySelectOut11" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+    and thcs_householdRegister like #{thcsHouseholdregister,jdbcType=VARCHAR} 
+  	Order By thcs_checkTime
+  </select>
+   <select id="findRecordBySelect88" resultMap="ResultMapWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.ThreeCheckServiceWithBLOBs" >
+    select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from threecheckservice
+    where thcs_year = #{thcsYear,jdbcType=VARCHAR} 
+    and thcs_batch = #{thcsBatch,jdbcType=VARCHAR} 
+    and thcs_nowLiveTown = #{thcsNowlivetown,jdbcType=VARCHAR}     
+    and thcs_nowLiveCounty = #{thcsNowlivecounty,jdbcType=VARCHAR}
+    and thcs_liveState = #{thcsLivestate,jdbcType=VARCHAR}
+  	Order By thcs_checkTime
+  </select>
+  
+</mapper>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计划生育健康优生信息管理系统</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+
+<script type="text/javascript" src="../javascript/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js"></script>
+<script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../javascript/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../js/editAnnouncement.js"></script>
+
+
+<style type="text/css">
+label {
+	font-size: 5%;
+}
+.file-box {
+	position: relative;
+	width: 450px
+}
+
+.txt {
+	height: 30px;
+	border: 1px solid #cdcdcd;
+	width: 250px;
+}
+
+.btn {
+	background-color: #FFF;
+	border: 1px solid #CDCDCD;
+	height: 30px;
+	width: 70px;
+}
+
+.file {
+	position: absolute;
+	top: 0;
+	right: 90px;
+	height: 30px;
+	filter: alpha(opacity : 0);
+	opacity: 0;
+	width: 270px
+}
+.bgBar{  
+  
+                background: #FFFFFF;  
+  
+                font-family: Arial,Verdana;  
+  
+                border: 1px solid #000000;  
+  
+                text-align: left;  
+  
+                font-size: 17;  
+  
+                font-weight: bold;  
+  
+            }  
+  
+            .bgBar div{  
+  
+                background: #DAECC8;  
+  
+                border: 1px solid #FFFFFF;  
+  
+                color:  #308040;  
+  
+                text-align: right;  
+  
+                overflow: hidden;  
+  
+            } 
+</style>
+</head>
+<body style="background-color: #F2F2F2">
+	<div class="container">
+		<img src="../images/titleJPG2.jpg" border="2" vspace="4" width="100%"
+			height="100%" align="bottom" />
+
+		<div class="row">
+			<div class="col-xs-3 ">
+				<!-- 左侧导航 -->
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; width: 100%; text-align: center">
+					<font size=3><b>登录信息</b></font>
+				</div>
+				<table class="table">
+					<tr>
+						<td style="width:58px;">单位：</td>
+						<td id="unit" colspan="2"></td>
+					</tr>
+					<tr>
+						<td>用户：</td>
+						<td id="username"></td>
+						<td align="right">
+						<div style="position: relative; right: -7px;">
+						
+						<button id="logout" type="button" class="btn btn-primary" style="height:26px;width:38px;">
+								<div style="position: relative; bottom: 4px;right:8px;" align="center">
+									<b>注销</b>
+								</div>
+						</button>
+						</div>
+							</td>
+					</tr>
+				</table>
+				<div style="position: relative; bottom: 20px;">
+					<div class="form-control"
+						style="background-color: #3162BB; color: #FFFFFF; text-align: center">
+						<font size=3><b>业务类型</b></font>
+					</div>
+					<!-- <div class="form-control"
+						style="background-color: #7CCD7C; text-align: center">
+						<font face="微软雅黑" size=3 color="#FFFFFF"><b>优生服务管理</b></font>
+					</div> -->
+					<b><ul id="authList" class="nav nav-pills nav-stacked" style="text-align: center">
+						<!-- <li><a href="../html/publishsurveytask.html"><font face="微软雅黑" size=3>发布普查任务</font></a></li>
+						<li><a href="../html/taskmanagement.html"><font face="微软雅黑" size=3>任务信息管理</font></a></li> -->
+					</ul></b>
+					<!-- <div class="form-control"
+						style="background-color: #7CCD7C; text-align: center">
+						<font face="微软雅黑" size=3 color="#FFFFFF"><b>系统信息管理</b></font>
+					</div>
+					<ul class="nav nav-pills nav-stacked" style="text-align: center">
+						<li><a href="../html/publishannouncement.html"><font face="微软雅黑" size=3>发布普查公告</font></a></li>
+						<li><a href="../html/announcementmanagement.html"><font face="微软雅黑" size=3>公告信息管理</font></a></li>
+					</ul> -->
+				</div>
+			</div>
+
+			<div class="col-xs-9">
+				<!-- 主要页面 -->
+				<div class="form-control"
+					style="background-color: #3162BB; color: #FFFFFF; text-align: left">
+					<font size=3><b>修改普查公告</b></font>
+				</div>
+				<br/>
+				<form class="form-horizontal" role="form">
+				    <div class="form-group">    
+				        <div class="col-xs-1 control-label">
+	                        标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题:
+	                    </div>
+	                    <div class="col-xs-9">
+				            
+				            <input id="title" type="text" maxlength="45" class="form-control" onblur="checkAnnoTitle()"/>
+				           
+				        </div>
+				        <span id="checkTitle1" style="display:none">
+						         <font color="red">输入不能为空！</font></span>
+				        <span id="checkTitle2" style="display:none">
+						         <font color="red">公告标题45字以内！</font></span>
+				    </div>
+				    <div class="form-group">
+				        <div class="col-xs-1 control-label">
+	                         内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容:
+	                    </div>
+	                     <div class="col-xs-9">
+				            
+				            <textarea style="display:none" id="content" maxlength="5000" class="form-control" rows="20" onblur="checkAnnoContent()"></textarea>
+				            <!-- 文本编辑器插件 -->	
+							<iframe src="editor.html?id=content" frameborder="0" scrolling="no" width="630" height="518">
+                              
+                            </iframe>
+				        </div>
+				        <span id="checkAnnoContent1" style="display:none">
+						         <font color="red">输入不能为空！</font></span>
+				        <span id="checkAnnoContent2" style="display:none">
+						         <font color="red">公告内容5000字以内！</font></span>
+				     </div>
+
+				     <div  class="form-group">
+				        <div class="col-xs-1 control-label">
+				            附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件:
+				        </div>
+				       <!--  <div class="col-xs-3">
+				            <input id="postfile" name="postfile" type="file" name="上传文件" />
+				        </div>
+				       
+				        <div class="col-xs-2" align="right">
+				            <button id="upload_file" type="button" class="btn btn-primary">
+							<div style="position: relative;bottom:2px;float:right;">
+							<b>上传</b>
+							</div></button>    
+				        </div> -->
+				        <div class="col-xs-4 control-label">
+							<div class="file-box">
+								<form action="" method="post" enctype="multipart/form-data">
+									<span id="span1"><input type='text' name='textfield' id='textfield' class='txt' /></span>
+									&nbsp;&nbsp;
+									<button type="button" class="btn btn-primary">
+										<b>浏览</b>
+									</button>
+									<span id="span2"><input
+										type="file" name="postfile" class="file" id="postfile"
+										size="28"
+										onchange="document.getElementById('textfield').value=this.value.slice(12)" /></span>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<button id="upload_file" type="button" class="btn btn-primary">
+										<b>上传</b>
+									</button>
+								</form>
+							</div>
+						</div>
+						<br/>
+						<br/>
+				        <!-- 上传提示显示的tip -->
+				            <!-- <div id="attachmentTip1" class="col-xs-4" style="display:block">
+					           <div class="alert alert-info alert-dismissable" style="height:40px;">
+						         <button type="button" class="close" data-dismiss="alert"
+											aria-hidden="true">&times;</button>
+						           <strong>Tip:</strong>附件大小不超过31M！
+					           </div>					
+				            </div> -->
+				        <!-- 上传提示显示的tip -->
+				            <div id="attachmentTip2" class="col-xs-12" style="display:none">
+					           <div class="alert alert-info alert-dismissable" style="height:40px;">
+						         <!-- <button type="button" class="close" data-dismiss="alert"
+											aria-hidden="true">&times;</button> -->
+						           <strong>Tip:</strong>正在上传，请稍等！
+					           </div>					
+				            </div>
+				    </div>
+				    <div class="col-xs-offset-1">
+				      <ul id="attachment" class="nav nav-pills nav-stacked">
+						
+					  </ul>
+				    </div>
+				        <div style="position: relative;bottom:0px;right:0px;">
+				        <div align="right">
+				     <button id="addNew" type="button" class="btn btn-primary">			
+					        <div style="position: relative;bottom:1px;">
+							<b>新建</b>
+							</div>
+							</button>
+					&nbsp;&nbsp;  
+				    <button id="edit" type="button" class="btn btn-primary">			
+					        <div style="position: relative;bottom:1px;">
+							<b>保存</b>
+							</div>
+							</button>
+					&nbsp;&nbsp;
+					<button id="cancel" type="button" class="btn btn-primary" onclick="window.location='../html/announcementmanagement.html'">
+							<div style="position: relative;bottom:1px;">
+							<b>取消</b>
+							</div>
+							</button>
+					</div>
+				    </div>		    
+				</form>
+			</div>
+			<div class="modal fade" id="myModal" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h5 class="modal-title" id="myModalLabel"><b>请再次输入用户信息确认</b></h5>
+							</div>
+							<div class="modal-body">
+								<form class="form-inline">
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<b>用户名：</b>
+										</div>
+										<div class="form-group">
+											<input id="username" type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Username" style="width:180px;">
+										</div>
+									</div>
+									<br />
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<b>密&nbsp;&nbsp;&nbsp;&nbsp;码：</b>
+										</div>
+										<div class="form-group">
+											<input id="password" type="password" class="form-control"
+												id="exampleInputPassword2" placeholder="Password" style="width:180px;">
+										</div>
+									</div>
+									<br/>
+									<div style="position: relative;" align="center">
+										<div class="form-group">
+											<b>验证码：</b>
+										</div>
+										<div class="form-group">
+											<input id="captcha" type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Checkcode" style="width:180px;">
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button id="submit" type="button" class="btn btn-primary"
+									data-dismiss="modal">
+									<div style="position: relative; bottom: 2px;">
+									<b>确定</b> 
+									</div>
+								</button>
+								<button id="onCancel" type="button" class="btn btn-primary"
+									data-dismiss="modal"><div style="position: relative; bottom: 2px;">
+										<b>取消</b>
+									</div></button>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	
+	<!-- 提示模态框 -->
+	<!-- <button type="button" class="btn btn-info" data-toggle="modal"
+			data-target="#myWarnModal" style="display: none"
+			id="showWarn"></button> -->
+	<div class="modal fade" id="myWarnModal" tabindex="-1">
+		<div style="position: relative; top: 200px;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h5 class="modal-title" id="myModalLabel"><font size=3><b>提示</b></font></h5>
+					</div>
+					<div class="modal-body">
+						<span id="warn" >
+						
+						</span>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						id="sure">确定</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

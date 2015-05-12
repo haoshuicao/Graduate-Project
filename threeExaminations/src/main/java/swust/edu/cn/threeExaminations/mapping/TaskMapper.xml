@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swust.edu.cn.threeExaminations.dao.TaskMapper" >
+  <resultMap id="BaseResultMap" type="swust.edu.cn.threeExaminations.model.Task" >
+    <id column="task_id" property="taskId" jdbcType="INTEGER" />
+    <result column="task_year" property="taskYear" jdbcType="VARCHAR" />
+    <result column="task_batch" property="taskBatch" jdbcType="VARCHAR" />
+    <result column="task_beginTime" property="taskBegintime" jdbcType="TIMESTAMP" />
+    <result column="task_endTime" property="taskEndtime" jdbcType="TIMESTAMP" />
+    <result column="task_publishTime" property="taskPublishtime" jdbcType="TIMESTAMP" />
+    <result column="task_lastModifyTime" property="taskLastmodifytime" jdbcType="TIMESTAMP" />
+    <result column="task_isDelete" property="taskIsdelete" jdbcType="INTEGER" />
+    <result column="task_userId" property="taskUserid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="swust.edu.cn.threeExaminations.model.Task" extends="BaseResultMap" >
+    <result column="task_content" property="taskContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    task_id, task_year, task_batch, task_beginTime, task_endTime, task_publishTime, task_lastModifyTime, 
+    task_isDelete, task_userId
+  </sql>
+  <sql id="Blob_Column_List" >
+    task_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from task
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="swust.edu.cn.threeExaminations.model.Task" >
+    insert into task (task_id, task_year, task_batch, 
+      task_beginTime, task_endTime, task_publishTime, 
+      task_lastModifyTime, task_isDelete, task_userId, 
+      task_content)
+    values (#{taskId,jdbcType=INTEGER}, #{taskYear,jdbcType=VARCHAR}, #{taskBatch,jdbcType=VARCHAR}, 
+      #{taskBegintime,jdbcType=TIMESTAMP}, #{taskEndtime,jdbcType=TIMESTAMP}, #{taskPublishtime,jdbcType=TIMESTAMP}, 
+      #{taskLastmodifytime,jdbcType=TIMESTAMP}, #{taskIsdelete,jdbcType=INTEGER}, #{taskUserid,jdbcType=INTEGER}, 
+      #{taskContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="swust.edu.cn.threeExaminations.model.Task" >
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="taskYear != null" >
+        task_year,
+      </if>
+      <if test="taskBatch != null" >
+        task_batch,
+      </if>
+      <if test="taskBegintime != null" >
+        task_beginTime,
+      </if>
+      <if test="taskEndtime != null" >
+        task_endTime,
+      </if>
+      <if test="taskPublishtime != null" >
+        task_publishTime,
+      </if>
+      <if test="taskLastmodifytime != null" >
+        task_lastModifyTime,
+      </if>
+      <if test="taskIsdelete != null" >
+        task_isDelete,
+      </if>
+      <if test="taskUserid != null" >
+        task_userId,
+      </if>
+      <if test="taskContent != null" >
+        task_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="taskYear != null" >
+        #{taskYear,jdbcType=VARCHAR},
+      </if>
+      <if test="taskBatch != null" >
+        #{taskBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="taskBegintime != null" >
+        #{taskBegintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskEndtime != null" >
+        #{taskEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskPublishtime != null" >
+        #{taskPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskLastmodifytime != null" >
+        #{taskLastmodifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskIsdelete != null" >
+        #{taskIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="taskUserid != null" >
+        #{taskUserid,jdbcType=INTEGER},
+      </if>
+      <if test="taskContent != null" >
+        #{taskContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="swust.edu.cn.threeExaminations.model.Task" >
+    update task
+    <set >
+      <if test="taskContent != null" >
+        task_content = #{taskContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="taskYear != null" >
+        task_year = #{taskYear,jdbcType=VARCHAR},
+      </if>
+      <if test="taskBatch != null" >
+        task_batch = #{taskBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="taskBegintime != null" >
+        task_beginTime = #{taskBegintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskEndtime != null" >
+        task_endTime = #{taskEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskPublishtime != null" >
+        task_publishTime = #{taskPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskLastmodifytime != null" >
+        task_lastModifyTime = #{taskLastmodifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskIsdelete != null" >
+        task_isDelete = #{taskIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="taskUserid != null" >
+        task_userId = #{taskUserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="swust.edu.cn.threeExaminations.model.Task" >
+    update task
+    set task_content = #{taskContent,jdbcType=LONGVARCHAR},
+      task_year = #{taskYear,jdbcType=VARCHAR},
+      task_batch = #{taskBatch,jdbcType=VARCHAR},
+      task_beginTime = #{taskBegintime,jdbcType=TIMESTAMP},
+      task_endTime = #{taskEndtime,jdbcType=TIMESTAMP},
+      task_publishTime = #{taskPublishtime,jdbcType=TIMESTAMP},
+      task_lastModifyTime = #{taskLastmodifytime,jdbcType=TIMESTAMP},
+      task_isDelete = #{taskIsdelete,jdbcType=INTEGER},
+      task_userId = #{taskUserid,jdbcType=INTEGER}
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="swust.edu.cn.threeExaminations.model.Task" >
+    update task
+    set task_year = #{taskYear,jdbcType=VARCHAR},
+      task_batch = #{taskBatch,jdbcType=VARCHAR},
+      task_beginTime = #{taskBegintime,jdbcType=TIMESTAMP},
+      task_endTime = #{taskEndtime,jdbcType=TIMESTAMP},
+      task_publishTime = #{taskPublishtime,jdbcType=TIMESTAMP},
+      task_lastModifyTime = #{taskLastmodifytime,jdbcType=TIMESTAMP},
+      task_isDelete = #{taskIsdelete,jdbcType=INTEGER},
+      task_userId = #{taskUserid,jdbcType=INTEGER}
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByUserId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task
+    where task_userId = #{taskUserid,jdbcType=INTEGER} and task_isDelete = '0'
+    order by task_lastModifyTime desc
+  </select>
+  <select id="selectAllTask" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task
+    where task_isDelete = '0'
+    order by task_lastModifyTime desc
+  </select>
+  <select id="selectSameTask" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task
+    where task_year = #{taskYear,jdbcType=VARCHAR} 
+    and task_batch = #{taskBatch,jdbcType=VARCHAR} 
+    and task_userId = #{taskUserid,jdbcType=INTEGER}
+    and  task_isDelete = '0'
+  </select>
+</mapper>
